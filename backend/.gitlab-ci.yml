@@ -1,0 +1,72 @@
+image: alpine:3.12
+
+stages:
+  - deploy
+
+deploy-dev:
+  stage: deploy
+  script:
+    - apk update
+    - apk add python3
+    - apk add curl
+    - apk add expect
+    - apk add jq
+    - echo "Install 'b4a' CLI tool"
+    - cd scripts/deployment
+    - sh install_b4a.sh
+    - echo "Deploy to back4app using b4a cli"
+    - expect script_dev.exp
+  only:
+  - develop
+
+deploy-prod:
+  stage: deploy
+  script:
+    - apk update
+    - apk add python3
+    - apk add curl
+    - apk add expect
+    - apk add jq
+    - echo "Install 'b4a' CLI tool"
+    - cd scripts/deployment
+    - sh install_b4a.sh
+    - echo "Deploy to back4app using b4a cli"
+    - expect script_prod.exp
+  only:
+  - main
+# image: ubuntu:18.04
+
+# stages:
+#   - deploy
+
+# deploy-dev:
+#   stage: deploy
+#   script:
+#     - apt-get update
+#     - apt-get -y install python3
+#     - apt-get -y install curl
+#     - apt-get -y install expect
+#     - apt-get -y install jq
+#     - echo "Install 'b4a' CLI tool"
+#     - cd scripts/deployment
+#     - sh install_b4a.sh
+#     - echo "Deploy to back4app using b4a cli"
+#     - expect script_dev.exp
+#   only:
+#   - develop
+
+# deploy-prod:
+#   stage: deploy
+#   script:
+#     - apt-get update
+#     - apt-get -y install python3
+#     - apt-get -y install curl
+#     - apt-get -y install expect
+#     - apt-get -y install jq
+#     - echo "Install 'b4a' CLI tool"
+#     - cd scripts/deployment
+#     - sh install_b4a.sh
+#     - echo "Deploy to back4app using b4a cli"
+#     - expect script_prod.exp
+#   only:
+#   - main
