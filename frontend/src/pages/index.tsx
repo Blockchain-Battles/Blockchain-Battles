@@ -8,21 +8,12 @@ import { FormEvent, useRef } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { isLoggedIn, login, signup } = useAuth();
-  const userRef = useRef<HTMLInputElement>(null!);
-  const passRef = useRef<HTMLInputElement>(null!);
-
-  const submitHandler = (event: FormEvent) => {
-    event?.preventDefault();
-    console.log(userRef.current.value);
-    signup(userRef.current.value, passRef.current.value);
-  };
-
+  const { getIsLoggedIn } = useAuth();
+  
   return (
-    <form onSubmit={submitHandler}>
-      <input type="text" placeholder="user" ref={userRef} />
-      <input type="text" placeholder="pass" ref={passRef} />
-      <button type="submit">signup</button>
-    </form>
+    <section>
+      <h1>BlockChainBattles</h1>
+      <p>A place to have fun on blockchain</p>
+    </section>
   );
 }
