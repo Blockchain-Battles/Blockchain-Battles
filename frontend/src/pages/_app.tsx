@@ -1,14 +1,26 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { initializeParse } from "@parse/react-ssr";
-import dotenv from "dotenv";
-dotenv.config();
-initializeParse(
-  process.env.INSERT_YOUR_CUSTOM_URL_HERE!, //custom url
-  process.env.PARSE_JAVASCRIPT_KEY!, //app id
-  process.env.INSERT_YOUR_JS_KEY_HERE! //js
-);
+import { AuthProvider } from "@/provider/Auth/Auth";
+import { useEffect } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  useEffect(() => {
+    console.log(process.env);
+    console.log(
+      process.env.PARSE_SERVER_URL!, //custom url
+      process.env.PARSE_APP_ID!, //app id
+      process.env.PARSE_JAVASCRIPT_KEY! //js
+    );
+    initializeParse(
+      process.env.PARSE_SERVER_URL!, //custom url
+      process.env.PARSE_APP_ID!, //app id
+      process.env.PARSE_JAVASCRIPT_KEY! //js
+    );
+  });
+  return (
+    <AuthProvider>
+      <Component {...pageProps} />
+    </AuthProvider>
+  );
 }
