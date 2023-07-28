@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 initializeParse(
   process.env.INSERT_YOUR_CUSTOM_URL_HERE!, //custom url
-  process.env.INSERT_YOUR_APP_ID_HERE!, //app id
+  process.env.PARSE_JAVASCRIPT_KEY!, //app id
   process.env.INSERT_YOUR_JS_KEY_HERE! //js
 );
 
