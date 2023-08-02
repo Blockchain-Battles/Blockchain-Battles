@@ -1,0 +1,16 @@
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+# Local ENVs
+.env.local
+.env.*.local
+
+# Hardhat files
+cache
+artifacts
+build
+.secret

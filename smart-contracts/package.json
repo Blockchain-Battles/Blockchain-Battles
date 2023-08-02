@@ -1,0 +1,37 @@
+{
+  "name": "smart-contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "standard --fix",
+    "compile": "cross-env NODE_NO_WARNINGS=1 hardhat compile",
+    "test": "cross-env GAS_REPORT=true NODE_NO_WARNINGS=1 hardhat test",
+    "test:watch": "cross-env GAS_REPORT=true NODE_NO_WARNINGS=1 hardhat watch test",
+    "node": "hardhat node",
+    "deploy:bsctestnet": "cross-env NODE_ENV=dev.local GAS_REPORT=true NODE_NO_WARNINGS=1 hardhat run ./scripts/deploy.js --network bscTestnet",
+    "deploy:mumbai": "cross-env NODE_ENV=dev.local GAS_REPORT=true NODE_NO_WARNINGS=1 hardhat run ./scripts/deploy.js --network mumbai",
+    "deploy": "cross-env GAS_REPORT=true NODE_NO_WARNINGS=1 hardhat run ./scripts/deploy.js --network localhost"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.1",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.8",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@openzeppelin/contracts": "^4.9.3",
+    "@truffle/hdwallet-provider": "^2.1.13",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "chai-bignumber": "^3.1.0",
+    "cross-env": "^7.0.3",
+    "dotenv-flow": "^3.2.0",
+    "hardhat": "^2.17.0",
+    "hardhat-watcher": "^2.5.0",
+    "lite-server": "^2.6.1",
+    "nodemon": "^3.0.1",
+    "standard": "^17.1.0",
+    "yargs": "^17.7.2"
+  }
+}
