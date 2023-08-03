@@ -18,7 +18,7 @@ export const AuthContext = createContext<{
 function AuthProviderNotMemoized(props: { children: JSX.Element }) {
   const router = useRouter();
   useEffect(() => {
-    if (!getIsLoggedIn) {
+    if (!getIsLoggedIn()) {
       if (!router.pathname.match(/^\/(signup|login)/)) {
         router.replace("/login");
       }
@@ -29,7 +29,6 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
     try {
       const user = await Parse.User.logIn(username, password);
       const userName = user.get("username");
-      // setIsLoggedIn(true);
       console.log(`${userName} just logged in!`);
       router.push("/");
     } catch (error: any) {
@@ -46,6 +45,7 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
         user.set("password", password);
         user.set("email", email);
         await user.signUp();
+        router.push("/");
       } catch (error: any) {
         console.log(error || "signup faild");
       }
