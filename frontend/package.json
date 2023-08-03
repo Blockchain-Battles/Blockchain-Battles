@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.0.8",
     "@parse/react-ssr": "^0.0.1-alpha.18",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
@@ -23,6 +24,11 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@types/parse": "^3.0.4"
+    "@types/parse": "^3.0.4",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "prettier": "^3.0.1",
+    "prettier-plugin-tailwindcss": "^0.4.1",
+    "tailwindcss": "^3.3.3"
   }
 }

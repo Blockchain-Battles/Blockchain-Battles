@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { getIsLoggedIn } = useAuth();
-  
+
   return (
-    <section>
+    <section className="w-full border-collapse bg-red-50 ">
       <h1>BlockChainBattles</h1>
       <p>A place to have fun on blockchain</p>
     </section>
