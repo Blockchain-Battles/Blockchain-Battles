@@ -33,5 +33,10 @@
     "nodemon": "^3.0.1",
     "standard": "^17.1.0",
     "yargs": "^17.7.2"
+  },
+  "dependencies": {
+    "@openzeppelin/defender-relay-client": "^1.47.1",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.7.0"
   }
 }
