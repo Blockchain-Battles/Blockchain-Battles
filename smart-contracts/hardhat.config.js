@@ -1,4 +1,4 @@
-require('dotenv-flow').config()
+require('dotenv-flow').config({silent: true})
 require('@nomicfoundation/hardhat-toolbox')
 require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-etherscan')
