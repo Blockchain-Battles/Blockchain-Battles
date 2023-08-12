@@ -1,6 +1,6 @@
 const hre = require('hardhat')
 
-
+const isPublicNetwork = !hre.network.name.includes('local')
 
 async function main() {
   // Deploy 
