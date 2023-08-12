@@ -20,6 +20,10 @@ async function main() {
 }
 
 async function verifyContract(token, contractName) {
+  if (!isPublicNetwork) {
+    // verifying contracts are only needed for public network deployments
+    return
+  }
   try {
     await hre.run('verify:verify', { address: token.address })
     console.log(`\n\n --> ${contractName} verified on the scanner site`)
