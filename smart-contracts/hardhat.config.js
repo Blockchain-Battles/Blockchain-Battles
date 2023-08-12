@@ -1,4 +1,4 @@
-require('dotenv-flow').config({silent: true})
+require('dotenv-flow').config({ silent: true })
 require('@nomicfoundation/hardhat-toolbox')
 require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-etherscan')
@@ -67,7 +67,7 @@ module.exports = {
       // bscMain: process.env.ETHERSCAN_APIKEY_BSCMAIN,
       // rinkeby: process.env.ETHERSCAN_APIKEY_RINKEBY,
       // goerli: process.env.ETHERSCAN_APIKEY_GOERLI,
-      sepolia: 'EQKVMZNDP5EFPNYBKQP9WEJCMDRK5HTK99',
+      sepolia: process.env.ETHERSCAN_APIKEY_SEPOLIA,
       // polygonMumbai: process.env.ETHERSCAN_APIKEY_MUMBAI,
     }
   },
