@@ -42,6 +42,10 @@
     "yargs": "^17.5.1"
   },
   "dependencies": {
-    "@chainlink/contracts": "^0.6.1"
+    "@chainlink/contracts": "^0.6.1",
+    "lite-server": "^2.6.1",
+    "nodemon": "^3.0.1",
+    "@openzeppelin/defender-relay-client": "^1.47.1",
+    "dotenv": "^16.3.1"
   }
 }
