@@ -17,7 +17,7 @@ const Login = (props: Props) => {
     <form onSubmit={submitHandler}>
       <input type="text" placeholder="username" ref={userRef} />
       <input type="text" placeholder="password" ref={passRef} />
-      <button type="submit">signup</button>
+      <button type="submit">login</button>
     </form>
   );
 };

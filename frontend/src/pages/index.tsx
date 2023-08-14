@@ -9,7 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { getIsLoggedIn } = useAuth();
-
+  if(getIsLoggedIn()){
+    
+  }
   return (
     <>
     {/* <section className="w-full border-collapse bg-red-50 "> */}
