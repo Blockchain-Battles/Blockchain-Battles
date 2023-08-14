@@ -1,8 +1,9 @@
-require('dotenv-flow').config()
+require('dotenv-flow').config({ silent: true })
 require('@nomicfoundation/hardhat-toolbox')
 require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-etherscan')
 require('hardhat-watcher')
+require('solidity-coverage')
 
 
 let OWNER_PRIVATE_KEY
@@ -42,26 +43,32 @@ module.exports = {
       url: 'https://data-seed-prebsc-1-s3.binance.org:8545',
       accounts
     },
-    bscMain: {
-      url: process.env.RPC_URL_BSCMAIN,
-      accounts
-    },
+    // bscMain: {
+    //   url: process.env.RPC_URL_BSCMAIN,
+    //   accounts
+    // },
     goerli: {
-      url: process.env.RPC_URL_GOERLI,
+      url: 'https://goerli.blockpi.network/v1/rpc/public',
       accounts
     },
     mumbai: {
       url: 'https://polygon-mumbai.g.alchemy.com/v2/demo',
       accounts
     },
+    sepolia: {
+      url: 'https://eth-sepolia.public.blastapi.io',
+      // https://endpoints.omniatech.io/v1/eth/sepolia/public
+      accounts
+    },
   },
   etherscan: {
     apiKey: {
-      bscTestnet: process.env.ETHERSCAN_APIKEY_BSCTEST,
-      bscMain: process.env.ETHERSCAN_APIKEY_BSCMAIN,
-      rinkeby: process.env.ETHERSCAN_APIKEY_RINKEBY,
-      goerli: process.env.ETHERSCAN_APIKEY_GOERLI,
-      polygonMumbai: process.env.ETHERSCAN_APIKEY_MUMBAI,
+      // bscTestnet: process.env.ETHERSCAN_APIKEY_BSCTEST,
+      // bscMain: process.env.ETHERSCAN_APIKEY_BSCMAIN,
+      // rinkeby: process.env.ETHERSCAN_APIKEY_RINKEBY,
+      // goerli: process.env.ETHERSCAN_APIKEY_GOERLI,
+      sepolia: process.env.ETHERSCAN_APIKEY_SEPOLIA,
+      // polygonMumbai: process.env.ETHERSCAN_APIKEY_MUMBAI,
     }
   },
   watcher: {
