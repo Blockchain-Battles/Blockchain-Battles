@@ -1,0 +1,7 @@
+.header {
+  box-shadow: 0 0 8px -6px #111;
+  &,
+  * {
+    user-select: none;
+  }
+}

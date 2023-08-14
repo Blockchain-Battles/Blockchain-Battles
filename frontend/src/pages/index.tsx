@@ -11,9 +11,11 @@ export default function Home() {
   const { getIsLoggedIn } = useAuth();
 
   return (
-    <section className="w-full border-collapse bg-red-50 ">
+    <>
+    {/* <section className="w-full border-collapse bg-red-50 "> */}
       <h1>BlockChainBattles</h1>
       <p>A place to have fun on blockchain</p>
-    </section>
+    {/* </section> */}
+    </>
   );
 }
