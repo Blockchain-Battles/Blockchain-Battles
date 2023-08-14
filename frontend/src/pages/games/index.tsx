@@ -14,10 +14,13 @@ const Games = (props: Props) => {
         <div
           className={`flex flex-wrap items-center justify-evenly gap-[2rem]`}
         >
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+          <GameCard
+            imageUrl="/sudoku.png"
+            name="sudoku"
+            onJoin={() => {
+              console.log("first");
+            }}
+          />
         </div>
       </section>
     </>
