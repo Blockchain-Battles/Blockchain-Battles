@@ -64,14 +64,17 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
   const loggedIn = getIsLoggedIn();
 
   useEffect(() => {
-    if (!loggedIn) {
+    if (!loggedIn && typeof window !== undefined) {
       if (!router.pathname.match(/^\/(signup|login)/)) {
         router.replace("/login");
       }
-      return;
     }
+  });
+
+  useEffect(() => {
     setIsLoggedIn(loggedIn);
   }, [loggedIn]);
+
   return (
     <AuthContext.Provider
       value={{ getIsLoggedIn, login, signup, isLoggedIn, logout }}

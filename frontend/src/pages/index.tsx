@@ -9,15 +9,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const { getIsLoggedIn } = useAuth();
-  if(getIsLoggedIn()){
-    
+  if (getIsLoggedIn()) {
   }
   return (
     <>
-    {/* <section className="w-full border-collapse bg-red-50 "> */}
+      <Head>
+        <title>blockchain battles</title>
+      </Head>
+      {/* <section className="w-full border-collapse bg-red-50 "> */}
       <h1>BlockChainBattles</h1>
       <p>A place to have fun on blockchain</p>
-    {/* </section> */}
+      {/* </section> */}
     </>
   );
 }
