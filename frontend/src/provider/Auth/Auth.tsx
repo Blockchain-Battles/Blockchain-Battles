@@ -65,7 +65,11 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
 
   useEffect(() => {
     if (!loggedIn && typeof window !== undefined) {
-      if (!router.pathname.match(/^\/(signup|login)/) && router.pathname !== "/") {
+      if (
+        !router.pathname.match(/^\/(signup|login)/) &&
+        router.pathname !== "/" &&
+        router.pathname !== "/contacts"
+      ) {
         router.replace("/login");
       }
     }
