@@ -17,7 +17,7 @@ const FormGroup = (props: Props) => {
         className="w-full rounded-[7px] p-2 focus-visible:outline-none"
       />
       {props.formik?.errors[props.name] && (
-        <p className=" text-deep-orange-500">
+        <p className=" text-deep-orange-500 text-sm mt-[1px]">
           {props.formik?.errors[props.name]}
         </p>
       )}

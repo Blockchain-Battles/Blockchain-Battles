@@ -1,29 +1,25 @@
-import { useAuth } from "@/provider/Auth/Auth";
-import { FormEvent, useRef } from "react";
+import LoginForm from "@/components/login/LoginForm";
+import SignupForm from "@/components/signup/SignupForm";
+import Head from "next/head";
+import Image from "next/image";
 
 type Props = {};
 const Signup = (props: Props) => {
-  const { signup } = useAuth();
-  const userRef = useRef<HTMLInputElement>(null!);
-  const emailRef = useRef<HTMLInputElement>(null!);
-  const passRef = useRef<HTMLInputElement>(null!);
-
-  const submitHandler = (event: FormEvent) => {
-    event?.preventDefault();
-    signup(
-      userRef.current.value,
-      passRef.current.value,
-      emailRef.current.value
-    );
-  };
-
   return (
-    <form onSubmit={submitHandler}>
-      <input type="text" placeholder="username" ref={userRef} />
-      <input type="text" placeholder="password" ref={passRef} />
-      <input type="text" placeholder="email" ref={emailRef} />
-      <button type="submit">signup</button>
-    </form>
+    <>
+      <Head>
+        <title>Signup</title>
+      </Head>
+      <section className="mx-auto mt-8 flex h-[70vh] w-full max-w-[700px] items-center rounded-[7px] bg-[#eeeeeea2] shadow-md">
+        <div className="h-full w-[50%] px-4 py-6">
+          <SignupForm />
+        </div>
+
+        <div className="flex h-full w-[50%] items-center justify-center bg-white">
+          <Image alt="login" src="/login.jpg" width={400} height={700} />
+        </div>
+      </section>
+    </>
   );
 };
 export default Signup;

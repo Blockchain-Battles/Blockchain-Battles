@@ -10,7 +10,7 @@ const Login = (props: Props) => {
         <title>Login</title>
       </Head>
       <section className="mx-auto mt-8 flex h-[70vh] w-full max-w-[700px] items-center rounded-[7px] bg-[#eeeeeea2] shadow-md">
-        <div className="h-full w-[50%] px-4 py-8">
+        <div className="h-full w-[50%] px-4 py-6">
           <LoginForm />
         </div>
 
