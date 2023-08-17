@@ -14,9 +14,9 @@ const MainLayout = (props: Props) => {
   const { isLoggedIn, logout } = useAuth();
   const router = useRouter();
   return (
-    <section className={`min-h-screen w-screen bg-[#fff] ${nunito.className} `}>
+    <section className={`min-h-screen w-screen bg-[#fff] absolute ${nunito.className} `}>
       <header
-        className={` flex h-[4rem] w-full items-center justify-between bg-transparent px-8 py-4  ${classes.header} `}
+        className={` flex h-[4rem] w-full items-center justify-between bg-[#fff] fixed top-0 px-8 py-4  ${classes.header} `}
       >
         <div className="logo">Logo</div>
         <nav>
@@ -57,16 +57,14 @@ const MainLayout = (props: Props) => {
           <div className={`cursor-pointer text-[25px]`}>
             {isLoggedIn && <CiLogout onClick={logout} />}
             {!isLoggedIn && (
-              <CiLogin
-                onClick={() => {
-                  router.push("/login");
-                }}
-              />
+             <Link href={"/login"}>
+             <CiLogin/>
+             </Link>
             )}
           </div>
         </div>
       </header>
-      <main className="px-8 py-4 ">{props.children}</main>
+      <main className="px-8  pt-[80px] h-screen">{props.children}</main>
     </section>
   );
 };
