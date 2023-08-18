@@ -10,13 +10,11 @@ import Parse, { User } from "parse";
 import { useRouter } from "next/router";
 
 export const AuthContext = createContext<{
-  getIsLoggedIn: () => boolean;
   login: (username: string, password: string) => void;
   signup: (username: string, password: string, email: string) => void;
   isLoggedIn: boolean;
   logout: () => void;
 }>({
-  getIsLoggedIn: () => false,
   login: () => {},
   signup: () => {},
   isLoggedIn: false,
@@ -57,11 +55,7 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
     setIsLoggedIn(false);
   };
 
-  const getIsLoggedIn = () => {
-    return !!Parse.User.current();
-  };
-
-  const loggedIn = getIsLoggedIn();
+  const loggedIn = !!Parse.User.current()
 
   useEffect(() => {
     if (!loggedIn && typeof window !== undefined) {
@@ -80,9 +74,7 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
   }, [loggedIn]);
 
   return (
-    <AuthContext.Provider
-      value={{ getIsLoggedIn, login, signup, isLoggedIn, logout }}
-    >
+    <AuthContext.Provider value={{ login, signup, isLoggedIn, logout }}>
       {props.children}
     </AuthContext.Provider>
   );

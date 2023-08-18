@@ -9,9 +9,6 @@ import Landing from "@/components/home/Landing/Landing";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const { getIsLoggedIn } = useAuth();
-  if (getIsLoggedIn()) {
-  }
   return (
     <>
       <Head>
