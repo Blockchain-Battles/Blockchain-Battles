@@ -3,7 +3,7 @@ import classes from './Landing.module.scss'
 type Props = {};
 const Landing = (props: Props) => {
   return (
-    <section className={`flex h-[60vh] w-full items-center py-[64px]`}>
+    <section className={`flex h-[60vh] w-full items-center justify-around py-[64px]`}>
       <div className="w-[50%] ">
         <h1 className="text-[20px]">BlockChainBattles</h1>
         <p className="text-[30px] font-semibold ">
