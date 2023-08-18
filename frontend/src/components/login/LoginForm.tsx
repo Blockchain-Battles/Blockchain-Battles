@@ -2,10 +2,13 @@ import FormGroup from "@/components/form/FormGroup";
 import useLoginFormik from "@/formik/login/useLoginFormik";
 import { useAuth } from "@/provider/Auth/Auth";
 import Link from "next/link";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import HideEye from "../ui/hideEye/HideEye";
 
 type Props = {};
 const LoginForm = (props: Props) => {
+  const [showPass, setShowPass] = useState<boolean>(false);
   const { login } = useAuth();
   const { formik } = useLoginFormik({
     initialValues: {
@@ -26,7 +29,7 @@ const LoginForm = (props: Props) => {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex h-[90%] flex-col justify-between"
+      className="flex h-[90%] select-none flex-col justify-between"
     >
       <div className="text-center text-[30px] font-semibold">Login</div>
       <div className="inputs">
@@ -36,13 +39,18 @@ const LoginForm = (props: Props) => {
           placeholder="username"
           label="Username"
         />
-        <FormGroup
-          formik={formik}
-          name="password"
-          placeholder="password"
-          type="password"
-          label="Password"
-        />
+        <div className="relative">
+          <FormGroup
+            formik={formik}
+            name="password"
+            placeholder="password"
+            type={showPass ? "text" : "password"}
+            label="Password"
+          />
+          <span className="absolute bottom-[7px] right-[16px] text-[25px] cursor-pointer">
+            <HideEye setShow={setShowPass} show={showPass} />
+          </span>
+        </div>
       </div>
       <div className="mt-4">
         <button

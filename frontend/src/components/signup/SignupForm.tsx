@@ -4,9 +4,12 @@ import useSignupFormik from "@/formik/signup/useSignupFromik";
 import { useAuth } from "@/provider/Auth/Auth";
 import Link from "next/link";
 import { FormEvent, useRef } from "react";
-
+import { useState } from "react";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import HideEye from "../ui/hideEye/HideEye";
 type Props = {};
 const SignupForm = (props: Props) => {
+  const [showPass, setShowPass] = useState<boolean>(false);
   const { signup } = useAuth();
   const { formik } = useSignupFormik({
     initialValues: {
@@ -44,13 +47,18 @@ const SignupForm = (props: Props) => {
           placeholder="username"
           label="Username"
         />
-        <FormGroup
-          formik={formik}
-          name="password"
-          placeholder="password"
-          type="password"
-          label="Password"
-        />
+        <div className="relative">
+          <FormGroup
+            formik={formik}
+            name="password"
+            placeholder="password"
+            type={showPass ? "text" : "password"}
+            label="Password"
+          />
+          <span className="absolute bottom-[7px] right-[16px] cursor-pointer text-[25px]">
+            <HideEye setShow={setShowPass} show={showPass} />
+          </span>
+        </div>
       </div>
       <div className="mt-4">
         <button
