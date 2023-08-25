@@ -1,0 +1,18 @@
+.coin1 {
+  animation: infinite flipper 0.5s;
+}
+@keyframes flipper {
+  0% {
+    transform: rotate3d(0);
+  }
+
+  100% {
+    transform: rotateY(180deg);
+    // transform: scale3d(1, 1, 1) rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate3d(0px, 0px, 0px) skew(0deg, 0deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+    //   transform: rotate3d(0);
+  }
+}

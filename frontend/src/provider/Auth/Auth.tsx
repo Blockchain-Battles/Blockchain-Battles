@@ -58,7 +58,7 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
   const loggedIn = !!Parse.User.current()
 
   useEffect(() => {
-    if (!loggedIn && typeof window !== undefined) {
+    if (!loggedIn) {
       if (
         !router.pathname.match(/^\/(signup|login)/) &&
         router.pathname !== "/" &&

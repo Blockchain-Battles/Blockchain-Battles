@@ -64,7 +64,7 @@ const MainLayout = (props: Props) => {
           </div>
         </div>
       </header>
-      <main className="px-8  pt-[80px] h-screen">{props.children}</main>
+      <main className="px-8  py-[80px] h-screen">{props.children}</main>
     </section>
   );
 };
