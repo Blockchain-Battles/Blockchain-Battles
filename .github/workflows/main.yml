@@ -42,8 +42,8 @@ jobs:
       - name: Log pwd
         run: pwd
       - name: Run install_b4a sh
-        run: sudo sh scripts/deployment/install_b4a.sh
+        run: sudo sh backend/scripts/deployment/install_b4a.sh
       - name: Log deploy started
         run: echo "Deploy to back4app using b4a cli"
       - name: Deploy
-        run: sudo expect scripts/deployment/script_prod.exp
+        run: sudo expect backend/scripts/deployment/script_prod.exp
