@@ -1,4 +1,4 @@
-cd ../../backend/cloud
+cd ../../cloud
 
 cat ../package.json | jq "[.]|map({dependencies})[0]" > ./package.json
 # cp -f ../package.json ./package.json
