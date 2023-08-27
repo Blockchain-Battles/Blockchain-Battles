@@ -46,4 +46,4 @@ jobs:
       - name: Log deploy started
         run: echo "Deploy to back4app using b4a cli"
       - name: Deploy
-        run: sudo expect backend/scripts/deployment/script_prod.exp
+        run: sudo expect -d backend/scripts/deployment/script_prod.exp
