@@ -1,6 +1,5 @@
-cd ../../cloud
 
-cat ../package.json | jq "[.]|map({dependencies})[0]" > ./package.json
+cat package.json | jq "[.]|map({dependencies})[0]" > cloud/package.json
 # cp -f ../package.json ./package.json
 
 b4a configure accountkey
