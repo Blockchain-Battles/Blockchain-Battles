@@ -1,5 +1,4 @@
-import CoinFlipComponent from "@/components/games/coinFlip/CoinFlip"
-
+import CoinFlipComponent from "@/features/games/coinFlip/CoinFlip"
 type Props = {}
 const CoinFlip = (props: Props) => {
   return (

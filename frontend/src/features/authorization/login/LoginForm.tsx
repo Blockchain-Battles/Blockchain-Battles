@@ -1,21 +1,18 @@
-import FormGroup from "@/components/form/FormGroup";
-import useLoginFormik from "@/formik/login/useLoginFormik";
-import useSignupFormik from "@/formik/signup/useSignupFromik";
-import { useAuth } from "@/provider/Auth/Auth";
+import FormGroup from "@/features/forms/components/FormGroup";
+import { useAuth } from "@/features/authorization/Auth/Auth";
 import Link from "next/link";
-import { FormEvent, useRef } from "react";
-import { useState } from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import HideEye from "../ui/hideEye/HideEye";
+import { FormEvent, useState } from "react";
+import useLoginFormik from "@/features/forms/lib/formik/login/useLoginFormik";
+import HideEye from "@/features/ui/components/hideEye/HideEye";
+
 type Props = {};
-const SignupForm = (props: Props) => {
+const LoginForm = (props: Props) => {
   const [showPass, setShowPass] = useState<boolean>(false);
-  const { signup } = useAuth();
-  const { formik } = useSignupFormik({
+  const { login } = useAuth();
+  const { formik } = useLoginFormik({
     initialValues: {
       username: "",
       password: "",
-      email: "",
     },
   });
 
@@ -23,24 +20,18 @@ const SignupForm = (props: Props) => {
     event?.preventDefault();
     formik.handleSubmit();
     if (formik.isValid) {
-      const { username, password, email } = formik.values as any;
-      signup(username, password, email);
+      const { username, password } = formik.values as any;
+      login(username, password);
     }
   };
 
   return (
     <form
       onSubmit={submitHandler}
-      className="flex h-[90%] flex-col justify-between"
+      className="flex h-[90%] select-none flex-col justify-between"
     >
-      <div className="text-center text-[30px] font-semibold">Signup</div>
+      <div className="text-center text-[30px] font-semibold">Login</div>
       <div className="inputs">
-        <FormGroup
-          formik={formik}
-          name="email"
-          placeholder="email"
-          label="Email"
-        />
         <FormGroup
           formik={formik}
           name="username"
@@ -65,15 +56,15 @@ const SignupForm = (props: Props) => {
           type="submit"
           className="w-full rounded-[7px] bg-[#222] p-2 text-white transition-all hover:bg-[#444]"
         >
-          Create Account
+          Login
         </button>
       </div>
       <div className="p-2">
-        <Link href={"/login"}>
-          <p>already have an account?</p>
+        <Link href={"/signup"}>
+          <p>don&apos;t have an account?</p>
         </Link>
       </div>
     </form>
   );
 };
-export default SignupForm;
+export default LoginForm;

@@ -1,9 +1,9 @@
-import NavMenuItem from "@/components/layouts/NavMenuItem";
-import { nunito } from "@/utils/font";
+import NavMenuItem from "@/features/layouts/components/NavMenuItem";
+import { nunito } from "@/assets/font";
 import classes from "./styles.module.scss";
 import { ReactNode } from "react";
 import { CiLogout, CiLogin } from "react-icons/ci";
-import { useAuth } from "@/provider/Auth/Auth";
+import { useAuth } from "@/features/authorization/Auth/Auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 type Props = {
@@ -14,9 +14,11 @@ const MainLayout = (props: Props) => {
   const { isLoggedIn, logout } = useAuth();
   const router = useRouter();
   return (
-    <section className={`min-h-screen w-screen bg-[#fff] absolute ${nunito.className} `}>
+    <section
+      className={`absolute min-h-screen w-screen bg-[#fff] ${nunito.className} `}
+    >
       <header
-        className={` flex h-[4rem] w-full items-center justify-between bg-[#fff] fixed top-0 px-8 py-4  ${classes.header} `}
+        className={` fixed top-0 flex h-[4rem] w-full items-center justify-between bg-[#fff] px-8 py-4  ${classes.header} `}
       >
         <div className="logo">Logo</div>
         <nav>
@@ -44,7 +46,9 @@ const MainLayout = (props: Props) => {
             <NavMenuItem>
               <Link
                 className={`${
-                  router.pathname.includes("/contacts") ? classes.activeLink : null
+                  router.pathname.includes("/contacts")
+                    ? classes.activeLink
+                    : null
                 }`}
                 href={"/contacts"}
               >
@@ -57,14 +61,14 @@ const MainLayout = (props: Props) => {
           <div className={`cursor-pointer text-[25px]`}>
             {isLoggedIn && <CiLogout onClick={logout} />}
             {!isLoggedIn && (
-             <Link href={"/login"}>
-             <CiLogin/>
-             </Link>
+              <Link href={"/login"}>
+                <CiLogin />
+              </Link>
             )}
           </div>
         </div>
       </header>
-      <main className="px-8  py-[80px] h-screen">{props.children}</main>
+      <main className="h-screen  px-8 py-[80px]">{props.children}</main>
     </section>
   );
 };

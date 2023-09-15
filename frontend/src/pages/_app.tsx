@@ -1,10 +1,8 @@
-import "@/styles/globals.css";
+import "@/assets/globals.css";
 import type { AppProps } from "next/app";
 import { initializeParse } from "@parse/react-ssr";
-import { AuthProvider } from "@/provider/Auth/Auth";
-import { useEffect } from "react";
-import { ThemeProvider } from "@material-tailwind/react";
-import MainLayout from "@/layouts/MainLayout";
+import { AuthProvider } from "@/features/authorization/Auth/Auth";
+import MainLayout from "@/features/layouts/Main/MainLayout";
 
 initializeParse(
   process.env.PARSE_SERVER_URL!, //custom url
@@ -13,12 +11,10 @@ initializeParse(
 );
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </AuthProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
+    </AuthProvider>
   );
 }
