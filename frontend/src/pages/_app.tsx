@@ -3,6 +3,7 @@ import type { AppProps } from "next/app";
 import { initializeParse } from "@parse/react-ssr";
 import { AuthProvider } from "@/features/authorization/Auth/Auth";
 import MainLayout from "@/features/layouts/Main/MainLayout";
+import { ToastifyProvider } from "@/features/ui";
 
 initializeParse(
   process.env.PARSE_SERVER_URL!, //custom url
@@ -11,10 +12,12 @@ initializeParse(
 );
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AuthProvider>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
-    </AuthProvider>
+    <ToastifyProvider>
+      <AuthProvider>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </AuthProvider>
+    </ToastifyProvider>
   );
 }

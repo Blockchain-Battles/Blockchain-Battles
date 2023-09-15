@@ -1,14 +1,7 @@
-import {
-  createContext,
-  memo,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import Parse, { User } from "parse";
 import { useRouter } from "next/router";
-
+import { toast } from "react-toastify";
 export const AuthContext = createContext<{
   login: (username: string, password: string) => void;
   signup: (username: string, password: string, email: string) => void;
@@ -21,7 +14,7 @@ export const AuthContext = createContext<{
   logout: () => {},
 });
 
-function AuthProviderNotMemoized(props: { children: JSX.Element }) {
+export function AuthProvider(props: { children: JSX.Element }) {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -31,7 +24,9 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
       const userName = user.get("username");
       console.log(`${userName} just logged in!`);
       router.push("/");
+      toast.success("Welcome back!");
     } catch (error: any) {
+      toast.error(error.message || "login faild");
       console.log(error?.message || "login faild");
     }
   };
@@ -45,8 +40,10 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
       user.set("email", email);
       await user.signUp();
       router.push("/");
+      toast.success("Account Created!");
     } catch (error: any) {
-      console.log(error || "signup faild");
+      toast.error(error.message || "signup faild");
+      console.log(error);
     }
   };
 
@@ -55,7 +52,7 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
     setIsLoggedIn(false);
   };
 
-  const loggedIn = !!Parse.User.current()
+  const loggedIn = !!Parse.User.current();
 
   useEffect(() => {
     if (!loggedIn) {
@@ -72,13 +69,10 @@ function AuthProviderNotMemoized(props: { children: JSX.Element }) {
   useEffect(() => {
     setIsLoggedIn(loggedIn);
   }, [loggedIn]);
-
   return (
     <AuthContext.Provider value={{ login, signup, isLoggedIn, logout }}>
       {props.children}
     </AuthContext.Provider>
   );
 }
-export const AuthProvider = memo(AuthProviderNotMemoized);
-
 export const useAuth = () => useContext(AuthContext);

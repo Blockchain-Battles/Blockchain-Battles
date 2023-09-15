@@ -6,6 +6,7 @@ import { CiLogout, CiLogin } from "react-icons/ci";
 import { useAuth } from "@/features/authorization/Auth/Auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { toast } from "react-toastify";
 type Props = {
   children: ReactNode;
 };
