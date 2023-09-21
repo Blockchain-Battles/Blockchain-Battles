@@ -20,43 +20,48 @@ const MainLayout = (props: Props) => {
       <header
         className={` fixed top-0 flex h-[4rem] w-full items-center justify-between bg-[#fff] px-8 py-4  ${classes.header} `}
       >
-        <div className="logo">Logo</div>
-        <nav>
-          <ul className="flex w-auto items-center justify-between px-4">
-            <NavMenuItem>
-              <Link
-                className={`${
-                  router.pathname === "/" ? classes.activeLink : null
-                }`}
-                href={"/"}
-              >
-                Home
-              </Link>
-            </NavMenuItem>
-            <NavMenuItem>
-              <Link
-                className={`${
-                  router.pathname.includes("/games") ? classes.activeLink : null
-                }`}
-                href={"/games"}
-              >
-                Games
-              </Link>
-            </NavMenuItem>
-            <NavMenuItem>
-              <Link
-                className={`${
-                  router.pathname.includes("/contacts")
-                    ? classes.activeLink
-                    : null
-                }`}
-                href={"/contacts"}
-              >
-                Contacts
-              </Link>
-            </NavMenuItem>
-          </ul>
-        </nav>
+        <div className="flex items-center gap-4">
+          <div className="logo">Logo</div>
+          <nav>
+            <ul className="flex w-auto items-center justify-between px-4">
+              <NavMenuItem>
+                <Link
+                  className={`${
+                    router.pathname === "/" ? classes.activeLink : null
+                  }`}
+                  href={"/"}
+                >
+                  Home
+                </Link>
+              </NavMenuItem>
+              <NavMenuItem>
+                <Link
+                  className={`${
+                    router.pathname.includes("/games")
+                      ? classes.activeLink
+                      : null
+                  }`}
+                  href={"/games"}
+                >
+                  Games
+                </Link>
+              </NavMenuItem>
+              <NavMenuItem>
+                <Link
+                  className={`${
+                    router.pathname.includes("/contacts")
+                      ? classes.activeLink
+                      : null
+                  }`}
+                  href={"/contacts"}
+                >
+                  Contacts
+                </Link>
+              </NavMenuItem>
+            </ul>
+          </nav>
+        </div>
+
         <div className="controller flex items-center justify-between">
           <ConnectButton />
           <div className={`cursor-pointer text-[25px]`}>
