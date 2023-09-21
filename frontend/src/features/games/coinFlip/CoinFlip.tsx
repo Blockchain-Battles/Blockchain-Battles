@@ -7,9 +7,9 @@ type Props = {};
 const CoinFlipComponent = (props: Props) => {
   const [isFlipping, setIsFlipping] = useState<boolean>(false);
   return (
-    <div className="flex h-full   flex-wrap  justify-center  gap-4  sm:flex-row">
+    <div className="flex h-full flex-wrap justify-center gap-4 sm:flex-row">
       <Meta />
-      <div className="h-[90%] max-h-[600px] min-h-[400px] w-[300px] shrink-0 rounded-[7px] bg-white p-4 shadow-md flex flex-col">
+      <div className="flex h-[90%] max-h-[400px] min-h-[400px] w-[300px] shrink-0 flex-col rounded-[7px] bg-white p-4 shadow-md">
         {/* header */}
         <h3 className="flex items-center justify-center border-b-2 border-b-black pb-1 text-center text-2xl">
           <span>Flip!</span>
@@ -24,7 +24,7 @@ const CoinFlipComponent = (props: Props) => {
         </div>
         {/* action button */}
         <div
-          className="block cursor-pointer rounded-[7px] bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
+          className="block cursor-pointer rounded-[7px] mt-auto bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
           onClick={() => setIsFlipping(true)}
         >
           Flip
