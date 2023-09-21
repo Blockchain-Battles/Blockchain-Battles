@@ -1,10 +1,10 @@
-import FormGroup from "@/features/forms/components/FormGroup";
-import { useAuth } from "@/features/authorization/Auth/Auth";
+import FormGroup from "@features/forms/components/FormGroup";
+import { useAuth } from "@features/authorization/Auth/Auth";
 import Link from "next/link";
 import { FormEvent } from "react";
 import { useState } from "react";
-import useSignupFormik from "@/features/forms/lib/formik/signup/useSignupFromik";
-import HideEye from "@/features/ui/components/hideEye/HideEye";
+import useSignupFormik from "@features/forms/lib/formik/signup/useSignupFromik";
+import HideEye from "@features/ui/components/hideEye/HideEye";
 type Props = {};
 const SignupForm = (props: Props) => {
   const [showPass, setShowPass] = useState<boolean>(false);

@@ -1,4 +1,4 @@
-import SignupForm from "@/features/authorization/signup/SignupForm";
+import SignupForm from "@features/authorization/signup/SignupForm";
 import Head from "next/head";
 import Image from "next/image";
 

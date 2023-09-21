@@ -1,5 +1,5 @@
-import GameCard from "@/features/games/gameCard/GameCard";
-import GamesHeader from "@/features/games/gamesHeader/GamesHeader";
+import GameCard from "@features/games/gameCard/GameCard";
+import GamesHeader from "@features/games/gamesHeader/GamesHeader";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 type game = { imagePath: string; title: string; name: string };

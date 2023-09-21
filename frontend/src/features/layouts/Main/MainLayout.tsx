@@ -1,9 +1,9 @@
-import NavMenuItem from "@/features/layouts/components/NavMenuItem";
+import NavMenuItem from "@features/layouts/components/NavMenuItem";
 import { nunito } from "@/assets/font";
 import classes from "./styles.module.scss";
 import { ReactNode } from "react";
 import { CiLogout, CiLogin } from "react-icons/ci";
-import { useAuth } from "@/features/authorization/Auth/Auth";
+import { useAuth } from "@features/authorization/Auth/Auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { toast } from "react-toastify";

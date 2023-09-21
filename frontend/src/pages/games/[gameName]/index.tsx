@@ -1,5 +1,5 @@
-import GameLayout from "@/features/games/game/GameLayout";
+import GameLayout from "@features/games/game/GameLayout";
 const Game = () => {
- return <GameLayout/>
+  return <GameLayout />;
 };
 export default Game;

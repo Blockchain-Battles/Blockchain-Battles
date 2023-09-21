@@ -1,9 +1,9 @@
-import FormGroup from "@/features/forms/components/FormGroup";
-import { useAuth } from "@/features/authorization/Auth/Auth";
+import FormGroup from "@features/forms/components/FormGroup";
+import { useAuth } from "@features/authorization/Auth/Auth";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import useLoginFormik from "@/features/forms/lib/formik/login/useLoginFormik";
-import HideEye from "@/features/ui/components/hideEye/HideEye";
+import useLoginFormik from "@features/forms/lib/formik/login/useLoginFormik";
+import HideEye from "@features/ui/components/hideEye/HideEye";
 
 type Props = {};
 const LoginForm = (props: Props) => {
