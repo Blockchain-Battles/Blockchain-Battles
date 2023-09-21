@@ -1,9 +1,11 @@
-import "@/assets/globals.css";
+import "assets/globals.css";
 import type { AppProps } from "next/app";
 import { initializeParse } from "@parse/react-ssr";
 import { AuthProvider } from "@features/authorization/Auth/Auth";
 import MainLayout from "@features/layouts/Main/MainLayout";
 import { ToastifyProvider } from "@features/ui";
+import RainbowKitWrapper from "@features/web3/context/rainbowKit";
+import Theme from "@features/ui/context/Theme";
 
 initializeParse(
   process.env.NEXT_PUBLIC_PARSE_SERVER_URL!, //custom url
@@ -13,12 +15,16 @@ initializeParse(
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ToastifyProvider>
-      <AuthProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </AuthProvider>
-    </ToastifyProvider>
+    <Theme>
+      <ToastifyProvider>
+        <RainbowKitWrapper>
+          <AuthProvider>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          </AuthProvider>
+        </RainbowKitWrapper>
+      </ToastifyProvider>
+    </Theme>
   );
 }

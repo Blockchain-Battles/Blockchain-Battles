@@ -1,16 +1,15 @@
 import NavMenuItem from "@features/layouts/components/NavMenuItem";
-import { nunito } from "@/assets/font";
+import { nunito } from "assets/font";
 import classes from "./styles.module.scss";
 import { ReactNode } from "react";
 import { CiLogout, CiLogin } from "react-icons/ci";
 import { useAuth } from "@features/authorization/Auth/Auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { toast } from "react-toastify";
+import ConnectButton from "@features/web3/components/ConnectButton";
 type Props = {
   children: ReactNode;
 };
-
 const MainLayout = (props: Props) => {
   const { isLoggedIn, logout } = useAuth();
   const router = useRouter();
@@ -58,7 +57,8 @@ const MainLayout = (props: Props) => {
             </NavMenuItem>
           </ul>
         </nav>
-        <div className="controller">
+        <div className="controller flex items-center justify-between">
+          <ConnectButton />
           <div className={`cursor-pointer text-[25px]`}>
             {isLoggedIn && <CiLogout onClick={logout} />}
             {!isLoggedIn && (
