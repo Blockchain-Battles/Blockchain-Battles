@@ -2,6 +2,7 @@ import { CoinFlipChoices } from "@features/coinFlip/models";
 import { errorToast, successToast } from "@features/ui";
 import { coinFlipAbi } from "@features/web3";
 import { isUndefined } from "lodash";
+import { TransactionReceipt } from "viem";
 import {
   useContractWrite,
   usePrepareContractWrite,
@@ -10,27 +11,43 @@ import {
 
 interface Props {
   flipChoice?: CoinFlipChoices;
+  onSettled?: (receipt?: TransactionReceipt) => void;
 }
 
 export const useFlip = (props: Props) => {
-  const { config, error: prepareError } = usePrepareContractWrite({
+  const {
+    config,
+    error: prepareError,
+    isLoading: isPreparing,
+  } = usePrepareContractWrite({
     address: process.env
       .NEXT_PUBLIC_FLIP_COIN_CONTRACT_ADDRESS! as `0x${string}`,
     abi: coinFlipAbi,
     functionName: "flipACoin",
     args: [props.flipChoice],
     enabled: !isUndefined(props.flipChoice),
+    onError(error) {
+      errorToast(error.message);
+    },
   });
 
-  const { write: flip, error: writeError, data } = useContractWrite(config);
+  const {
+    write: flip,
+    error: writeError,
+    data,
+    isLoading: isFlipping,
+  } = useContractWrite(config);
 
-  const { isLoading } = useWaitForTransaction({
+  const { isLoading: isWaiting } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess(receipt) {
       successToast("You won. Congrats!");
     },
     onError(error) {
       errorToast(error?.message || "Flip faild!");
+    },
+    onSettled(receipt) {
+      props.onSettled?.(receipt);
     },
   });
 
@@ -40,6 +57,6 @@ export const useFlip = (props: Props) => {
     error: errorMessage,
     isError: !!errorMessage,
     flip,
-    isLoading,
+    isFlipping: isWaiting || isFlipping,
   };
 };

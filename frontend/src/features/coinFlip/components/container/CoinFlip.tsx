@@ -5,22 +5,25 @@ import History from "@features/coinFlip/components/History";
 import Meta from "@features/coinFlip/components/Details";
 import { useFlip } from "@features/coinFlip/hooks/useFlip";
 import clsx from "clsx";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { CoinFlipChoices } from "@features/coinFlip/models";
+import { AiOutlineLoading } from "react-icons/ai";
+import { isUndefined } from "lodash";
 type Props = {};
 export const CoinFlipComponent = (props: Props) => {
   const [coinChoice, setCoinChoice] = useState<CoinFlipChoices>();
-  const {
-    error,
-    flip,
-    isError,
-    isLoading: isFlipping,
-  } = useFlip({
+  const { error, flip, isError, isFlipping } = useFlip({
     flipChoice: coinChoice,
+    onSettled() {
+      setCoinChoice(undefined);
+    },
   });
 
+  //if a coin side is chosen, then flip the coin
   useEffect(() => {
-    flip?.();
+    if (!isUndefined(coinChoice) && !isFlipping) {
+      flip?.();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coinChoice]);
 
@@ -42,22 +45,29 @@ export const CoinFlipComponent = (props: Props) => {
           <BsCoin />
         </div>
         {/* action button */}
-        <div className="flex items-center justify-between">
-          <Button
-            variant="contained"
-            className="mx-2 mt-auto block basis-[50%] cursor-pointer rounded-[7px] bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
-            onClick={() => setCoinChoice(CoinFlipChoices.head)}
-          >
-            Heads
-          </Button>
-          <Button
-            variant="contained"
-            className="mx-2 mt-auto block basis-[50%] cursor-pointer rounded-[7px] bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
-            onClick={() => setCoinChoice(CoinFlipChoices.tails)}
-          >
-            Tails
-          </Button>
-        </div>
+        {isFlipping && (
+          <div className="m-4 text-center">
+            <CircularProgress />
+          </div>
+        )}
+        {!isFlipping && (
+          <div className="flex items-center justify-between">
+            <Button
+              variant="contained"
+              className="mx-2 mt-auto block basis-[50%] cursor-pointer rounded-[7px] bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
+              onClick={() => setCoinChoice(CoinFlipChoices.head)}
+            >
+              Heads
+            </Button>
+            <Button
+              variant="contained"
+              className="mx-2 mt-auto block basis-[50%] cursor-pointer rounded-[7px] bg-[#f82aff] p-4 text-center text-xl tracking-wider text-white "
+              onClick={() => setCoinChoice(CoinFlipChoices.tails)}
+            >
+              Tails
+            </Button>
+          </div>
+        )}
       </div>
       <History />
     </div>
