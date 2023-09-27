@@ -1,4 +1,4 @@
-import CoinFlipComponent from "@features/games/coinFlip/CoinFlip";
+import {CoinFlipComponent} from "@features/coinFlip";
 import Head from "next/head";
 type Props = {};
 const CoinFlip = (props: Props) => {

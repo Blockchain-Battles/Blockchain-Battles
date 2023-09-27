@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 type Props = {};
-const Meta = (props: Props) => {
+const Details = (props: Props) => {
   return (
     <div className="w-[300px] shrink-0 p-4 text-justify">
       <h1 className="mb-4 flex text-5xl font-bold">
@@ -24,4 +24,4 @@ const Meta = (props: Props) => {
     </div>
   );
 };
-export default Meta;
+export default Details;

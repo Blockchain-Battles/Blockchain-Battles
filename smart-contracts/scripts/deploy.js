@@ -12,7 +12,7 @@ async function main() {
   
   // wait for 5 confirmations
   console.log('coinFlip.deployed, waiting for 5 block confirmations...')
-  await coinFlip.deployTransaction.wait(5)
+  await coinFlip.deployTransaction.wait()
   console.log(`CoinFlip deployed to ${coinFlip.address}`)
 
   // Verifying CoinFlip
