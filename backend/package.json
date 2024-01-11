@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "1.6.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "dotenv-flow": "^4.1.0",
     "express": "^4.18.2",
     "kerberos": "*",
-    "parse": "^4.3.1",
-    "parse-server": "^6.4.0"
+    "parse": "4.1.0",
+    "parse-server": "6.3.1"
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon index.js",
