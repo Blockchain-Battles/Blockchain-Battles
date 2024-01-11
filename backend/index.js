@@ -1,9 +1,3 @@
-require('dotenv-flow').config()
-const express = require('express');
-const ParseServer = require('parse-server').ParseServer;
-const path = require('path');
-const args = process.argv || [];
-const test = args.some(arg => arg.includes('jasmine'));
 
 const config = {
   databaseURI: process.env.DATABASE_URI,
@@ -15,6 +9,16 @@ const config = {
   clientKey: process.env.CLIENT_KEY,
   javascriptKey: process.env.JAVASCRIPT_KEY,
   liveQuery: {}
+// Example express application adding the parse-server module to expose Parse
+// compatible API routes.
+import dotenv from 'dotenv-flow';
+dotenv.config();
+
+import express from 'express';
+import { ParseServer } from 'parse-server';
+import path from 'path';
+const __dirname = path.resolve();
+import http from 'http';
 };
 
 const app = express();
