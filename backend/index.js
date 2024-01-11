@@ -1,14 +1,3 @@
-
-const config = {
-  databaseURI: process.env.DATABASE_URI,
-  cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: process.env.APP_ID,
-  masterKey: process.env.MASTER_KEY,
-  serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',
-  restAPIKey: process.env.REST_API_KEY,
-  clientKey: process.env.CLIENT_KEY,
-  javascriptKey: process.env.JAVASCRIPT_KEY,
-  liveQuery: {}
 // Example express application adding the parse-server module to expose Parse
 // compatible API routes.
 import dotenv from 'dotenv-flow';
