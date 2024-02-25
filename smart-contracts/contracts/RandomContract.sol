@@ -5,7 +5,7 @@ contract RandomContract {
     address private owner;
     uint256 private nonce;
 
-    mapping (address => [uint]) history;
+    mapping(address => uint256[]) public history;
 
     event CoinFlipped(address indexed user, uint256 result);
     event DiceRolled(address indexed user, uint256 result);
