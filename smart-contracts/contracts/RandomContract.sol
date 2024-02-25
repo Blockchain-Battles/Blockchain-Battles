@@ -19,11 +19,13 @@ contract RandomContract {
 
     function flipCoin() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(2);
+        history[msg.sender].push(randomNumber);
         return randomNumber;
     }
 
     function rollDice() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(6) + 1;
+        history[msg.sender].push(randomNumber);
         return randomNumber;
     }
 
