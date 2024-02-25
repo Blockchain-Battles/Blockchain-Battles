@@ -7,7 +7,7 @@ contract RandomContract {
 
     mapping(address => uint256[]) public history;
 
-    event CoinFlipped(address indexed user, uint256 result);
+    event CoinFlipped(address indexed user, uint256 result, uint256 amountWon);
     event DiceRolled(address indexed user, uint256 result);
 
     constructor() {
