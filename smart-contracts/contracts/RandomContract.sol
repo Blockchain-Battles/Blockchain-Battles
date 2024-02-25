@@ -7,6 +7,9 @@ contract RandomContract {
 
     mapping (address => [uint]) history;
 
+    event CoinFlipped(address indexed user, uint256 result);
+    event DiceRolled(address indexed user, uint256 result);
+
     constructor() {
         owner = msg.sender;
         nonce = 0;
@@ -20,12 +23,14 @@ contract RandomContract {
     function flipCoin() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(2);
         history[msg.sender].push(randomNumber);
+        emit CoinFlipped(msg.sender, randomNumber);
         return randomNumber;
     }
 
     function rollDice() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(6) + 1;
         history[msg.sender].push(randomNumber);
+        emit DiceRolled(msg.sender, randomNumber);
         return randomNumber;
     }
 
