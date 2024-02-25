@@ -21,6 +21,9 @@ contract RandomContract {
     }
 
     function flipCoin() external returns (uint256) {
+    function deposit() external payable {
+        require(msg.value > 0, "Deposit amount must be greater than zero");
+    }
         uint256 randomNumber = _generateRandomNumber(2);
         history[msg.sender].push(randomNumber);
         emit CoinFlipped(msg.sender, randomNumber);
