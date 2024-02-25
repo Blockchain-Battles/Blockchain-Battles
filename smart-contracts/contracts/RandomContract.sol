@@ -27,11 +27,11 @@ contract RandomContract {
         return randomNumber;
     }
 
-    function rollDice() external returns (uint256) {
-        uint256 randomNumber = _generateRandomNumber(6) + 1;
-        history[msg.sender].push(randomNumber);
-        emit DiceRolled(msg.sender, randomNumber);
-        return randomNumber;
+    function withdraw() external onlyOwner {
+        require(address(this).balance > 0, "Contract balance is zero");
+
+        uint256 amount = address(this).balance;
+        payable(owner).transfer(amount);
     }
 
     // Internal function to generate a pseudo-random number using block information
