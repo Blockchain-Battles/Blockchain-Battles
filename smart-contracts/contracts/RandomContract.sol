@@ -20,13 +20,23 @@ contract RandomContract {
         _;
     }
 
-    function flipCoin() external returns (uint256) {
     function deposit() external payable {
         require(msg.value > 0, "Deposit amount must be greater than zero");
     }
+
+    function flipCoin(uint256 prediction) external payable returns (uint256) {
+
+
         uint256 randomNumber = _generateRandomNumber(2);
         history[msg.sender].push(randomNumber);
-        emit CoinFlipped(msg.sender, randomNumber);
+
+        if (randomNumber == prediction) {
+            uint256 amountWon = msg.value * 2; // Reward the user with the same amount
+            emit CoinFlipped(msg.sender, randomNumber, amountWon);
+        } else {
+            emit CoinFlipped(msg.sender, randomNumber, 0);
+        }
+
         return randomNumber;
     }
 
