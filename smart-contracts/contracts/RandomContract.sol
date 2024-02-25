@@ -10,5 +10,10 @@ contract RandomContract {
         nonce = 0;
     }
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can call this function");
+        _;
+    }
+
   
 }
