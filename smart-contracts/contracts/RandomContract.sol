@@ -27,6 +27,8 @@ contract RandomContract {
     function flipCoin(uint256 prediction) external payable returns (uint256) {
         require(prediction == 0 || prediction == 1, "Invalid prediction. Use 0 for heads or 1 for tails");
 
+        // Check if the contract has enough balance to pay the reward
+        require(address(this).balance >= msg.value, "Insufficient contract balance");
 
         uint256 randomNumber = _generateRandomNumber(2);
         history[msg.sender].push(randomNumber);
