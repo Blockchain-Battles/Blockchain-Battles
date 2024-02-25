@@ -21,6 +21,11 @@ contract RandomContract {
         return randomNumber;
     }
 
+    // Generate a random number between 1 and 6 (inclusive)
+    function rollDice() external onlyOwner returns (uint256) {
+        uint256 randomNumber = _generateRandomNumber(6) + 1;
+        return randomNumber;
+    }
 
     // Internal function to generate a pseudo-random number using block information
     function _generateRandomNumber(uint256 range) internal returns (uint256) {
