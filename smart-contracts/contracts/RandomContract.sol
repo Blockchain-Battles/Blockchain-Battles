@@ -15,6 +15,13 @@ contract RandomContract {
         _;
     }
 
+    // Generate a random number between 0 and 1 (inclusive)
+    function flipCoin() external onlyOwner returns (uint256) {
+        uint256 randomNumber = _generateRandomNumber(2);
+        return randomNumber;
+    }
+
+
     // Internal function to generate a pseudo-random number using block information
     function _generateRandomNumber(uint256 range) internal returns (uint256) {
         nonce++;
