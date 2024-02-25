@@ -36,6 +36,7 @@ contract RandomContract {
         if (randomNumber == prediction) {
             uint256 amountWon = msg.value * 2; // Reward the user with the same amount
             emit CoinFlipped(msg.sender, randomNumber, amountWon);
+            payable(msg.sender).transfer(amountWon); // Transfer ETH to the user
         } else {
             emit CoinFlipped(msg.sender, randomNumber, 0);
         }
