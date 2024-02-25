@@ -25,6 +25,7 @@ contract RandomContract {
     }
 
     function flipCoin(uint256 prediction) external payable returns (uint256) {
+        require(prediction == 0 || prediction == 1, "Invalid prediction. Use 0 for heads or 1 for tails");
 
 
         uint256 randomNumber = _generateRandomNumber(2);
