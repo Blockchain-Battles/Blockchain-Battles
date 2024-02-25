@@ -15,12 +15,12 @@ contract RandomContract {
         _;
     }
 
-    function flipCoin() external onlyOwner returns (uint256) {
+    function flipCoin() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(2);
         return randomNumber;
     }
 
-    function rollDice() external onlyOwner returns (uint256) {
+    function rollDice() external returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(6) + 1;
         return randomNumber;
     }
