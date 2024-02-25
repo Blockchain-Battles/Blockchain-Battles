@@ -15,13 +15,11 @@ contract RandomContract {
         _;
     }
 
-    // Generate a random number between 0 and 1 (inclusive)
     function flipCoin() external onlyOwner returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(2);
         return randomNumber;
     }
 
-    // Generate a random number between 1 and 6 (inclusive)
     function rollDice() external onlyOwner returns (uint256) {
         uint256 randomNumber = _generateRandomNumber(6) + 1;
         return randomNumber;
