@@ -15,5 +15,10 @@ contract RandomContract {
         _;
     }
 
-  
+    // Internal function to generate a pseudo-random number using block information
+    function _generateRandomNumber(uint256 range) internal returns (uint256) {
+        nonce++;
+        uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, nonce))) % range;
+        return randomNumber;
+    }
 }
