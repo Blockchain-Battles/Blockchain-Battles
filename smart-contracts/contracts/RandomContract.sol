@@ -57,4 +57,8 @@ contract RandomContract {
         uint256 randomNumber = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty, nonce))) % range;
         return randomNumber;
     }
+
+    function getHistory(address _address) external view returns (uint256[] memory) {
+        return history[_address];
+    }
 }
