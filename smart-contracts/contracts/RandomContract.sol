@@ -5,6 +5,8 @@ contract RandomContract {
     address private owner;
     uint256 private nonce;
 
+    mapping (address => [uint]) history;
+
     constructor() {
         owner = msg.sender;
         nonce = 0;
