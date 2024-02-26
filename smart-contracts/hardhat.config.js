@@ -4,6 +4,8 @@ require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-etherscan')
 require('hardhat-watcher')
 require('solidity-coverage')
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-ethers");
 
 
 let OWNER_PRIVATE_KEY
