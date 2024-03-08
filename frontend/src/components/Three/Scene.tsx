@@ -3,8 +3,10 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { animated, useSpring } from "@react-spring/three";
 import {
   Box,
+  Environment,
   Grid,
   OrbitControls,
+  Preload,
   RoundedBox,
   useHelper,
 } from "@react-three/drei";
@@ -20,6 +22,7 @@ import {
   Mesh,
   MeshStandardMaterial,
 } from "three";
+import BaseBox from "./BaseBox";
 
 type Props = {};
 
@@ -30,13 +33,13 @@ const Scene = (props: Props) => {
   const camera = useThree((state) => state.camera);
 
   const pathname = usePathname();
-  
+
   useFrame(({ clock: { elapsedTime } }, delta) => {
-    ref.current.position.setY(Math.sin(elapsedTime * 2) * 2 - 20);
+    ref.current.position.setY(Math.sin(elapsedTime * 2) * 2 - 50);
   });
 
   const [springs, api] = useSpring(() => ({
-    from: { rotation: [0, 0, 0], position: [100, -50, -50] },
+    from: { rotation: [0, 0, 0], position: [100, -100, -50] },
     config: { mass: 5, tension: 400, friction: 50 },
   }));
 
@@ -56,23 +59,20 @@ const Scene = (props: Props) => {
     <>
       <color args={["black"]} attach="background" />
       <directionalLight castShadow position={[0, 300, 0]} intensity={1} />
-      <ambientLight color="#eee" />
+      <ambientLight color="#a5a5a5" />
       {
         ///@ts-ignore
         <animated.group castShadow ref={ref} {...springs}>
           <group position={[0, 50, 0]}>
             <uiTunnle.Out />
           </group>
-          <RoundedBox
-            radius={10}
-            material={new MeshStandardMaterial()}
-            receiveShadow
-            args={[150, 100, 150]}
-            position={[0, 0, 0]}
-          />
+          <BaseBox />
         </animated.group>
       }
-      <OrbitControls />
+      <Preload all />
+      {/* <axesHelper args={[500]} />
+      <gridHelper args={[200, 200, 200]} /> */}
+      <OrbitControls enabled={true} />
     </>
   );
 };

@@ -1,22 +1,17 @@
-"use client";
+import Signup from "@/components/pages/signup";
 import View from "@/utils/three/View";
 import { Sphere } from "@react-three/drei";
+import { Metadata } from "next";
 import { MeshNormalMaterial, MeshStandardMaterial } from "three";
+
+export const metadata: Metadata = {
+  title: "Signup",
+};
 
 export default function Page() {
   return (
     <>
-      <View>
-        <Sphere
-          args={[50]}
-          position={[0, 10, 0]}
-          material={new MeshStandardMaterial()}
-          castShadow
-        />
-      </View>
-      <div className="pointer-events-auto">
-        <button>Click to Flip</button>
-      </div>
+      <Signup />
     </>
   );
 }

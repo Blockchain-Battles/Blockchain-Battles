@@ -1,17 +1,21 @@
 "use client";
+import Controller from "@/components/Three/Controller";
+import Ethereum from "@/components/Three/Ethereum";
 import View from "@/utils/three/View";
 import React from "react";
-import Controller from "./Controller";
 
 type Props = {};
 
 const Home = (props: Props) => {
+  console.log('first')
   return (
-    <div className="pointer-events-auto">
+    <>
+      <div className="pointer-events-auto">home</div>
       <View>
         <Controller />
+        <Ethereum />
       </View>
-    </div>
+    </>
   );
 };
 

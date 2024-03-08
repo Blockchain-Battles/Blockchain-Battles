@@ -9,7 +9,7 @@ const Canvas = ({ children }: Props) => {
     <ThreeCanvas shadows className="absolute inset-0" id="app-canvas">
       <OrthographicCamera
         makeDefault
-        position={[1000, 500, 1000]}
+        position={[700, 300, 1000]}
         near={0}
         far={100000}
         zoom={3}

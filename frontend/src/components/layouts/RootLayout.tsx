@@ -2,8 +2,7 @@
 import useOnlyEffect from "@/hooks/useOnlyEffect";
 import { uiTunnle } from "@/utils/three/tunnle";
 import { useSpring, animated } from "@react-spring/three";
-import { Box, Grid, OrbitControls } from "@react-three/drei";
-
+import { Grid, OrbitControls } from "@react-three/drei";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, {
@@ -37,7 +36,6 @@ const RootLayout = ({ children }: Props) => {
           <Link href="/?name=soroush">HomeQuery</Link>
           <Link href="/signup">signup</Link>
         </div>
-        {children}
       </div>
     </>
   );
