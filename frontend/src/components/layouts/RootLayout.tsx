@@ -36,6 +36,7 @@ const RootLayout = ({ children }: Props) => {
           <Link href="/?name=soroush">HomeQuery</Link>
           <Link href="/signup">signup</Link>
         </div>
+        {children}
       </div>
     </>
   );

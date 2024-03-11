@@ -7,7 +7,6 @@ import React from "react";
 type Props = {};
 
 const Home = (props: Props) => {
-  console.log('first')
   return (
     <>
       <div className="pointer-events-auto">home</div>
