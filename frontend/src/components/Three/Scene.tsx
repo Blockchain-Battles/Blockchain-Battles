@@ -28,6 +28,7 @@ type Props = {};
 
 const Scene = (props: Props) => {
   const ref = useRef<Mesh>(null!);
+  const rotationCounts = useRef(0);
   const refLight = useRef<any>(null!);
 
   const camera = useThree((state) => state.camera);
@@ -44,12 +45,13 @@ const Scene = (props: Props) => {
   }));
 
   const rotationHandler = useCallback(() => {
+    rotationCounts.current++;
     api.start({
       to: {
-        rotation: [Math.PI * 2 + springs.rotation.get()[0], 0, 0],
+        rotation: [Math.PI * 2 * rotationCounts.current, 0, 0],
       },
     });
-  }, [api, springs]);
+  }, [api]);
 
   useOnlyEffect(() => {
     rotationHandler();
