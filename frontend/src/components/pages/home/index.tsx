@@ -1,15 +1,17 @@
 "use client";
 import Controller from "@/components/Three/Controller";
 import Ethereum from "@/components/Three/Ethereum";
+import CTA from "@/components/pages/home/CTA";
 import View from "@/utils/three/View";
+import { Box } from "@mui/material";
+import { Variants, motion } from "framer-motion";
+
 import React from "react";
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <>
-      <div className="pointer-events-auto">home</div>
+      <CTA/>
       <View>
         <Controller />
         <Ethereum />

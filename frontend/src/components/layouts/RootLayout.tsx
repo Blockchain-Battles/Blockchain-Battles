@@ -20,10 +20,29 @@ import { Box } from "@mui/material";
 import HStack from "@/components/ui/HStack";
 import NavbarLink from "@/components/ui/NavbarLink";
 import Providers from "@/providers/index.provider";
+import { AnimatePresence } from "framer-motion";
 
 type Props = PropsWithChildren;
 
 const RootLayout = ({ children }: Props) => {
+  const routes: { route: string; content: string }[] = [
+    {
+      content: "BlockChainBattles",
+      route: "/",
+    },
+    {
+      content: "Games",
+      route: "/games",
+    },
+    {
+      content: "Login",
+      route: "/login",
+    },
+    {
+      content: "Signup",
+      route: "/signup",
+    },
+  ];
   return (
     <Providers>
       <Canvas>
@@ -36,12 +55,16 @@ const RootLayout = ({ children }: Props) => {
           FiraCode.className
         )}
       >
-        <HStack fontSize={20} p={2} gap={2} sx={{ pointerEvents: "auto" }}>
-          <NavbarLink href="/">BlockChainBattles</NavbarLink>
-          <NavbarLink href="/login">Login</NavbarLink>
-          <NavbarLink href="/signup">Signup</NavbarLink>
+        <HStack p={4} gap={2} sx={{ pointerEvents: "auto" }}>
+          {routes.map(({ content, route }) => (
+            <NavbarLink href={route} key={route}>
+              {content}
+            </NavbarLink>
+          ))}
         </HStack>
-        <Box component="div" p={2}>{children}</Box>
+        <Box component="div" p={2}>
+          <AnimatePresence>{children}</AnimatePresence>
+        </Box>
       </Box>
     </Providers>
   );
