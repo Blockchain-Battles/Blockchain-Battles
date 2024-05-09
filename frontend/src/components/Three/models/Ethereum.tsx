@@ -9,7 +9,7 @@ Title: Ethereum
 */
 
 import * as THREE from "three";
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
@@ -38,15 +38,16 @@ type ContextType = Record<
   React.ForwardRefExoticComponent<JSX.IntrinsicElements["mesh"]>
 >;
 
-export function Model(
+export const Model = forwardRef(function Model(
   props: JSX.IntrinsicElements["group"] & {
     color?: "gold" | "silver";
-  }
+  },
+  ref
 ) {
   const { color = "gold", ...groupProps } = props;
   const { nodes, materials } = useGLTF("/ethereum.gltf") as GLTFResult;
   return (
-    <group {...groupProps} dispose={null}>
+    <group {...groupProps} ref={ref} dispose={null}>
       {/* golden coin */}
       {color === "gold" && (
         <>
@@ -83,38 +84,10 @@ export function Model(
             rotation={[Math.PI / 2, 0, 0]}
             scale={2.409}
           />
-          {/* <mesh
-            geometry={nodes.Object_8.geometry}
-            material={materials["Material.007"]}
-            position={[2.998, 0, -0.99]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={2.409}
-          />
-          <mesh
-            geometry={nodes.Object_10.geometry}
-            material={materials["Material.003"]}
-            position={[2.998, 0, -0.99]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={2.409}
-          />
-          <mesh
-            geometry={nodes.Object_12.geometry}
-            material={materials["Material.006"]}
-            position={[2.998, 0, -0.99]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={2.409}
-          />
-          <mesh
-            geometry={nodes.Object_14.geometry}
-            material={materials["Material.001"]}
-            position={[-0.217, 0, -0.378]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={2.409}
-          /> */}
         </>
       )}
     </group>
   );
-}
+});
 
 useGLTF.preload("/ethereum.gltf");

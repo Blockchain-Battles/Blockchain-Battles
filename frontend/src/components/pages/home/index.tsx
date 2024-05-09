@@ -11,10 +11,10 @@ import React from "react";
 const Home = () => {
   return (
     <>
-      <CTA/>
+      <CTA />
       <View>
         <Controller />
-        <Ethereum />
+        <Ethereum position={[10, 20, -10]} rotation={[-Math.PI * 0.5, 0, 0]} />
       </View>
     </>
   );

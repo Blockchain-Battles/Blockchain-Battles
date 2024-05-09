@@ -61,7 +61,7 @@ const Scene = (props: Props) => {
     <>
       <color args={["black"]} attach="background" />
       <directionalLight castShadow position={[0, 300, 0]} intensity={1} />
-      <ambientLight color="#a5a5a5" />
+      <ambientLight color="#a5a5a5" intensity={3} />
       {
         ///@ts-ignore
         <animated.group castShadow ref={ref} {...springs}>

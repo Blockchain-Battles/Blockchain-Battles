@@ -7,25 +7,6 @@ import React from "react";
 type Props = {};
 
 const CTA = (props: Props) => {
-  const container: Variants = {
-    init: { x: -100 },
-    animate: {
-      x: 0,
-      transition: {
-        staggerChildren: 0.05,
-      },
-    },
-  };
-  const item: Variants = {
-    init: {
-      opacity: 0,
-      x: -100,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-    },
-  };
   return (
     <AnimateInChildren
       height={600}
