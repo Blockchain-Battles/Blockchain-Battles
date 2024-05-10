@@ -10,6 +10,8 @@ import NavbarLink from "@/components/ui/NavbarLink";
 import Providers from "@/providers/index.provider";
 import { AnimatePresence } from "framer-motion";
 import Splash from "@/components/layouts/Splash";
+import RainbowProvider from "@/providers/rainbow.provider";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 type Props = PropsWithChildren;
 
@@ -43,27 +45,32 @@ const RootLayout = ({ children }: Props) => {
         <Canvas onCreated={handleCanvasCreation}>
           <Scene />
         </Canvas>
-        <Box
-          component="div"
-          className={clsx(
-            "absolute text-white font-sans pointer-events-none select-none inset-0",
-            FiraCode.className
-          )}
-        >
-          <Splash show={showSplash} />
+        <RainbowProvider>
+          <Box
+            component="div"
+            className={clsx(
+              "absolute text-white font-sans pointer-events-none select-none inset-0",
+              FiraCode.className
+            )}
+          >
+            <Splash show={showSplash} />
 
-          <HStack p={4} gap={2} sx={{ pointerEvents: "auto" }}>
-            {routes.map(({ content, route }) => (
-              <NavbarLink href={route} key={route}>
-                {content}
-              </NavbarLink>
-            ))}
-          </HStack>
+            <HStack p={4} gap={2} sx={{ pointerEvents: "auto" }}>
+              {routes.map(({ content, route }) => (
+                <NavbarLink href={route} key={route}>
+                  {content}
+                </NavbarLink>
+              ))}
+              <Box component="div" ml="auto">
+                <ConnectButton />
+              </Box>
+            </HStack>
 
-          <Box component="div" p={2}>
-            {children}
+            <Box component="div" p={2}>
+              {children}
+            </Box>
           </Box>
-        </Box>
+        </RainbowProvider>
       </Providers>
     </>
   );
