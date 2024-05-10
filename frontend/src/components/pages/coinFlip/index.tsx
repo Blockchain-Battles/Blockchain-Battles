@@ -13,7 +13,7 @@ const CoinFlip: FC = () => {
   const [styles, api] = useSpring(() => {
     return {
       from: {
-        position: [0, 50, 0],
+        position: [0, 10, 0],
         rotation: [-Math.PI / 2, 0, 0],
       },
     };
@@ -32,7 +32,7 @@ const CoinFlip: FC = () => {
   const responseReceived = () => {
     setLoading(false);
 
-    api.start({ position: [0, 50, 0], rotation: [0, 0, 0] });
+    api.start({ position: [0, 10, 0], rotation: [0, 0, 0] });
   };
 
   useEffect(() => {

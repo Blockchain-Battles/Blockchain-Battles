@@ -43,7 +43,6 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 
 export function Controller(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials } = useGLTF('/xbox_controller_lp.glb') as GLTFResult
-  console.log({materials,nodes})
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>

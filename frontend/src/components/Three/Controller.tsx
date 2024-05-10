@@ -1,6 +1,5 @@
 import React, { ComponentProps } from "react";
 import { Controller as ControllerGLTF } from "@/components/Three/models/Controller";
-import { RoundedBox } from "@react-three/drei";
 type Props = ComponentProps<typeof ControllerGLTF>;
 
 const Controller = (props: Props) => {
