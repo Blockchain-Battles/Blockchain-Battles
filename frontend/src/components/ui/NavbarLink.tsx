@@ -7,7 +7,7 @@ type Props = NextLinkProps & MuiLinkProps;
 
 const NavbarLink = (props: Props) => {
   const pathname = usePathname();
-  const isActive = props.href === pathname;
+  const isActive = props.href === "/" ? pathname === props.href : pathname.includes(props.href);
   return (
     <MuiLink
       sx={{ transition: ".2s all ease" }}
