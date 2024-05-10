@@ -9,6 +9,7 @@ const ThemeProvider = ({ children }: PropsWithChildren<Props>) => {
   const theme = createTheme({
     palette: {
       primary: purple,
+      mode: "dark",
     },
     typography: {
       fontFamily: FiraCode?.style?.fontFamily,

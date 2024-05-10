@@ -1,6 +1,5 @@
 import AnimateInChildren from "@/components/ui/AnimateInChildren";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { Variants, motion } from "framer-motion";
+import { Button, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
 

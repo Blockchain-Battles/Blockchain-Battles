@@ -1,12 +1,16 @@
-import React, { PropsWithChildren, useRef } from "react";
-import { Canvas as ThreeCanvas } from "@react-three/fiber";
-import { AgXToneMapping, Camera, CameraHelper, Vector3 } from "three";
-import { OrthographicCamera, useHelper } from "@react-three/drei";
-type Props = PropsWithChildren;
+import React, { PropsWithChildren } from "react";
+import { CanvasProps, Canvas as ThreeCanvas } from "@react-three/fiber";
+import { OrthographicCamera } from "@react-three/drei";
+type Props = PropsWithChildren<CanvasProps>;
 
-const Canvas = ({ children }: Props) => {
+const Canvas = ({ children, ...other }: Props) => {
   return (
-    <ThreeCanvas shadows className="absolute inset-0" id="app-canvas">
+    <ThreeCanvas
+      shadows 
+      className="absolute inset-0"
+      id="app-canvas"
+      {...other}
+    >
       <OrthographicCamera
         makeDefault
         position={[700, 300, 1000]}
