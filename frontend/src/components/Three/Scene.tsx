@@ -1,27 +1,12 @@
 "use client";
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { animated, useSpring } from "@react-spring/three";
-import {
-  Box,
-  Environment,
-  Grid,
-  OrbitControls,
-  Preload,
-  RoundedBox,
-  useHelper,
-} from "@react-three/drei";
+import { OrbitControls, Preload } from "@react-three/drei";
 import { uiTunnle } from "@/utils/three/tunnle";
 import { usePathname } from "next/navigation";
 import useOnlyEffect from "@/hooks/useOnlyEffect";
-import { Group } from "three/examples/jsm/libs/tween.module.js";
 import { useFrame, useThree } from "@react-three/fiber";
-import {
-  DirectionalLight,
-  DirectionalLightHelper,
-  GridHelper,
-  Mesh,
-  MeshStandardMaterial,
-} from "three";
+import { Mesh } from "three";
 import BaseBox from "./BaseBox";
 
 type Props = {};
@@ -61,7 +46,7 @@ const Scene = (props: Props) => {
     <>
       <color args={["#151515"]} attach="background" />
       <directionalLight castShadow position={[0, 300, 0]} intensity={1} />
-      <ambientLight color="#ffffff" intensity={3} />
+      <ambientLight color="#ffffff" intensity={1} />
       {
         ///@ts-ignore
         <animated.group castShadow ref={ref} {...springs}>

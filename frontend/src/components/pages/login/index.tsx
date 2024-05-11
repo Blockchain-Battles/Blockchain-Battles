@@ -1,13 +1,25 @@
 "use client";
 import Lock from "@/components/Three/Lock";
+import AnimateInChildren from "@/components/ui/AnimateInChildren";
 import View from "@/utils/three/View";
+import { Button, Typography } from "@mui/material";
 import React from "react";
 
-type Props = {};
-
-const Login = (props: Props) => {
+const Login = () => {
   return (
     <>
+      <AnimateInChildren
+        height={600}
+        width={500}
+        m={5}
+        gap={4}
+        justifyContent="center"
+        sx={{
+          pointerEvents: "auto",
+        }}
+      >
+        <Typography variant="h3">Login</Typography>
+      </AnimateInChildren>
       <View>
         <Lock />
       </View>
