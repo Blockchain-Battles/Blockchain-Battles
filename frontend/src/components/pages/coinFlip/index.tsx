@@ -1,13 +1,11 @@
 "use client";
-import Ethereum from "@/components/Three/Ethereum";
 import Coin from "@/components/pages/coinFlip/Coin";
 import AnimateInChildren from "@/components/ui/AnimateInChildren";
+import { CoinStatus } from "@/models/games/CoinFlip";
 import View from "@/utils/three/View";
 import { Button, Stack, Typography } from "@mui/material";
 import { useSpring } from "@react-spring/three";
 import { FC, useEffect, useState } from "react";
-
-type CoinStatus = "heads" | "tails";
 
 const CoinFlip: FC = () => {
   const [loading, setLoading] = useState(false);
@@ -60,9 +58,6 @@ const CoinFlip: FC = () => {
   }, [loading, api]);
 
   const handleCoinFlip = (playerChoice: CoinStatus) => {
-    if (playerChoice === "heads") {
-    } else if (playerChoice === "tails") {
-    }
     setCurrentCoinStatus(playerChoice);
     startRequest();
   };
@@ -85,19 +80,23 @@ const CoinFlip: FC = () => {
         <Typography variant="h3">Flip a coin</Typography>
         <Stack gap={2} direction="row">
           <Button
-            onClick={() => handleCoinFlip("heads")}
+            onClick={() => handleCoinFlip(CoinStatus.heads)}
             sx={{ width: 150, height: 150, fontSize: 15 }}
             disabled={loading}
-            variant={currentCoinStatus === "heads" ? "contained" : undefined}
+            variant={
+              currentCoinStatus === CoinStatus.heads ? "contained" : undefined
+            }
           >
             Heads
           </Button>
 
           <Button
-            onClick={() => handleCoinFlip("tails")}
+            onClick={() => handleCoinFlip(CoinStatus.tails)}
             sx={{ width: 150, height: 150 }}
             disabled={loading}
-            variant={currentCoinStatus === "tails" ? "contained" : undefined}
+            variant={
+              currentCoinStatus === CoinStatus.tails ? "contained" : undefined
+            }
           >
             Tails
           </Button>
