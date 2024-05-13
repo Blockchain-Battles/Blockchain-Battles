@@ -7,8 +7,13 @@ import { Button, Stack, Typography } from "@mui/material";
 import { useSpring } from "@react-spring/three";
 import { FC, useEffect, useState } from "react";
 
+type CoinStatus = "heads" | "tails";
+
 const CoinFlip: FC = () => {
   const [loading, setLoading] = useState(false);
+  const [currentCoinStatus, setCurrentCoinStatus] = useState<null | CoinStatus>(
+    null
+  );
 
   const [styles, api] = useSpring(() => {
     return {
@@ -31,7 +36,7 @@ const CoinFlip: FC = () => {
 
   const responseReceived = () => {
     setLoading(false);
-
+    setCurrentCoinStatus(null);
     api.start({ position: [0, 12, 0], rotation: [0, 0, 0] });
   };
 
@@ -54,6 +59,14 @@ const CoinFlip: FC = () => {
     }
   }, [loading, api]);
 
+  const handleCoinFlip = (playerChoice: CoinStatus) => {
+    if (playerChoice === "heads") {
+    } else if (playerChoice === "tails") {
+    }
+    setCurrentCoinStatus(playerChoice);
+    startRequest();
+  };
+
   return (
     <>
       <View>
@@ -72,12 +85,22 @@ const CoinFlip: FC = () => {
         <Typography variant="h3">Flip a coin</Typography>
         <Stack gap={2} direction="row">
           <Button
-            onClick={startRequest}
+            onClick={() => handleCoinFlip("heads")}
             sx={{ width: 150, height: 150, fontSize: 15 }}
+            disabled={loading}
+            variant={currentCoinStatus === "heads" ? "contained" : undefined}
           >
             Heads
           </Button>
-          <Button sx={{ width: 150, height: 150 }}>Tails</Button>
+
+          <Button
+            onClick={() => handleCoinFlip("tails")}
+            sx={{ width: 150, height: 150 }}
+            disabled={loading}
+            variant={currentCoinStatus === "tails" ? "contained" : undefined}
+          >
+            Tails
+          </Button>
         </Stack>
       </AnimateInChildren>
     </>
