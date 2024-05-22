@@ -54,7 +54,7 @@ const RootLayoutMainContent: FC<PropsWithChildren<Props>> = ({
           ))}
           <HStack
             component="div"
-            alignItems="stretch"
+            alignItems="center"
             ml="auto"
             gap={1}
             height="50px"
