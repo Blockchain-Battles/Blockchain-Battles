@@ -1,7 +1,7 @@
 "use client";
 
+import GoogleAuthProvider from "@/providers/googleauth.provider";
 import QueryProvider from "@/providers/query.provider";
-import RainbowProvider from "@/providers/rainbow.provider";
 import ThemeProvider from "@/providers/theme.provider";
 import WagmiProvider from "@/providers/wagmi.provider";
 import React, { PropsWithChildren } from "react";
@@ -12,7 +12,9 @@ const Providers = ({ children }: PropsWithChildren<Props>) => {
   return (
     <ThemeProvider>
       <WagmiProvider>
-        <QueryProvider>{children}</QueryProvider>
+        <GoogleAuthProvider>
+          <QueryProvider>{children}</QueryProvider>
+        </GoogleAuthProvider>
       </WagmiProvider>
     </ThemeProvider>
   );

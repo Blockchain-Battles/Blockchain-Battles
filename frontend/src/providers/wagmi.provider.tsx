@@ -1,13 +1,13 @@
 import { FC, PropsWithChildren } from "react";
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import config from "@/config";
-import { mainnet, polygonZkEvm } from "viem/chains";
+import { bscTestnet, bsc } from "viem/chains";
 import { WagmiProvider as WProvider } from "wagmi";
 
 const rainbowConfig = getDefaultConfig({
   appName: "BlockChainBattles",
   projectId: config.projectId,
-  chains: [mainnet, polygonZkEvm],
+  chains: [bscTestnet, bsc],
   ssr: true,
 });
 
