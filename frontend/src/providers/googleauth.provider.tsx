@@ -4,7 +4,7 @@ import config from "@/config";
 
 const GoogleAuthProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <GoogleOAuthProvider clientId={config.googleAuthClientId}>
+    <GoogleOAuthProvider clientId={config.googleAuthClientId!}>
       {children}
     </GoogleOAuthProvider>
   );

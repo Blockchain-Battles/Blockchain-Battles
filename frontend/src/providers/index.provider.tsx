@@ -3,6 +3,7 @@
 import GoogleAuthProvider from "@/providers/googleauth.provider";
 import QueryProvider from "@/providers/query.provider";
 import ThemeProvider from "@/providers/theme.provider";
+import ToastProvider from "@/providers/toast.provider";
 import WagmiProvider from "@/providers/wagmi.provider";
 import React, { PropsWithChildren } from "react";
 
@@ -13,7 +14,9 @@ const Providers = ({ children }: PropsWithChildren<Props>) => {
     <ThemeProvider>
       <WagmiProvider>
         <GoogleAuthProvider>
-          <QueryProvider>{children}</QueryProvider>
+          <ToastProvider>
+            <QueryProvider>{children}</QueryProvider>
+          </ToastProvider>
         </GoogleAuthProvider>
       </WagmiProvider>
     </ThemeProvider>

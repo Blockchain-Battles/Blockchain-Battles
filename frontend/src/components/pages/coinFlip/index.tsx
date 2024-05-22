@@ -7,12 +7,15 @@ import View from "@/utils/three/View";
 import { Button, Stack, Typography } from "@mui/material";
 import { useSpring } from "@react-spring/three";
 import { FC, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { useAccount } from "wagmi";
 
 const CoinFlip: FC = () => {
   const [currentCoinStatus, setCurrentCoinStatus] = useState<null | CoinStatus>(
     null
   );
 
+  const { isConnected } = useAccount();
   const { flip, isLoading, lastResult } = useCoinFlip({
     onFlipResult(result) {
       // todo : implement result handling (if won, or got the result, drop down the coin accordingly)
@@ -57,9 +60,13 @@ const CoinFlip: FC = () => {
    * when user clicks on heads or tails
    */
   function handleCoinFlip(playerChoice: CoinStatus) {
-    api.start({ position: [0, 100, 0] });
-    setCurrentCoinStatus(playerChoice);
-    flip(playerChoice);
+    if (isConnected) {
+      api.start({ position: [0, 100, 0] });
+      setCurrentCoinStatus(playerChoice);
+      flip(playerChoice);
+    } else {
+      toast.error("Connect your wallet!");
+    }
   }
 
   /**
