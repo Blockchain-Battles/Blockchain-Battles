@@ -1,17 +1,36 @@
-const WALLET_CONNECT_ID: string | undefined =
-  process.env.NEXT_PUBLIC_WALLET_CONNECT_ID;
-const GOOGLE_AUTH_CLIENT_ID: string | undefined =
-  process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID;
+import Joi from "joi";
+import { Address } from "viem";
 
-if (!WALLET_CONNECT_ID) {
-  throw new Error("provide a wallet connect project id in env variables");
+export interface EnvVars {
+  NEXT_PUBLIC_WALLET_CONNECT_ID: string;
+  NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID: string;
+  NEXT_PUBLIC_FLIP_COIN_CONTRACT_ADDRESS: string;
 }
-if (!GOOGLE_AUTH_CLIENT_ID) {
-  throw new Error("provide a google auth client id in env variables");
+
+const envSchema = Joi.object<EnvVars>({
+  NEXT_PUBLIC_WALLET_CONNECT_ID: Joi.string().required(),
+  NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID: Joi.string().default("test_abc"),
+  NEXT_PUBLIC_FLIP_COIN_CONTRACT_ADDRESS: Joi.string()
+    .pattern(new RegExp("0x\s*"))
+    .required(),
+}).unknown(true);
+
+const isWindow = global.window !== undefined;
+
+if (!isWindow) {
+  const { error, value } = envSchema.validate(process.env, {
+    abortEarly: false,
+  });
+
+  if (error) {
+    throw `Config validation error : ${error}`;
+  }
 }
 
 const config = {
-  projectId: WALLET_CONNECT_ID,
-  googleAuthClientId: GOOGLE_AUTH_CLIENT_ID,
+  projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID,
+  googleAuthClientId: process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID,
+  flipCoinAddress: process.env.NEXT_PUBLIC_FLIP_COIN_CONTRACT_ADDRESS as Address,
 };
+
 export default config;

@@ -47,6 +47,9 @@ dependencies:
   gltfjsx:
     specifier: ^6.2.16
     version: 6.2.16
+  joi:
+    specifier: ^17.13.1
+    version: 17.13.1
   next:
     specifier: 14.1.0
     version: 14.1.0(@babel/core@7.24.5)(react-dom@18.2.0)(react@18.2.0)
