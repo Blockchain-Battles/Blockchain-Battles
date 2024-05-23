@@ -14,7 +14,7 @@ contract FlipCoin {
     function flipCoin(uint8 guess) external payable {
         require(guess == 0 || guess == 1, "Guess must be 0 or 1");
         require(msg.value > 0, "Bet amount must be greater than zero");
-        require(address(this).balance >= msg.value * 2, "Not enough funds in the contract to cover the bet");
+        require(address(this).balance >= msg.value, "Not enough funds in the contract to cover the bet");
 
         // Generate a pseudo-random number 0 or 1
         uint8 outcome = uint8(uint256(keccak256(abi.encodePacked(block.timestamp, block.prevrandao, msg.sender))) % 2);
