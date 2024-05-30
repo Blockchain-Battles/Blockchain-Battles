@@ -1,10 +1,10 @@
-require('dotenv-flow').config({ silent: true })
+// require('dotenv-flow').config({ silent: true })
 require('@nomicfoundation/hardhat-toolbox')
 require('@nomiclabs/hardhat-web3')
 require('@nomiclabs/hardhat-etherscan')
 require('hardhat-watcher')
 require('solidity-coverage')
-require("@nomiclabs/hardhat-waffle");
+// require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
 
 
@@ -37,6 +37,10 @@ module.exports = {
   defaultNetwork: 'hardhat',
 
   networks: {
+    zkSync: {
+      url: "https://rinkeby-api.zksync.io",
+      accounts
+    },
     hardhat: {
       chainId: 1337,
       allowUnlimitedContractSize: true

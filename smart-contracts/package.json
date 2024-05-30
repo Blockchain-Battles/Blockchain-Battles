@@ -17,7 +17,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.3",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.3",
     "@nomicfoundation/hardhat-toolbox": "^1.0.2",
     "@nomiclabs/hardhat-etherscan": "^3.1.0",
@@ -43,9 +42,10 @@
   },
   "dependencies": {
     "@chainlink/contracts": "^0.6.1",
-    "lite-server": "^2.6.1",
-    "nodemon": "^3.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
     "@openzeppelin/defender-relay-client": "^1.47.1",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "lite-server": "^2.6.1",
+    "nodemon": "^3.0.1"
   }
 }
