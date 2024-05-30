@@ -5,18 +5,18 @@ const isPublicNetwork = !hre.network.name.includes('local')
 async function main() {
   // Deploy 
   console.log('Deploying contracts...')
-  const CoinFlip = await hre.ethers.getContractFactory('CoinFlip')
-  const coinFlip = await CoinFlip.deploy()
+  const FlipCoin = await hre.ethers.getContractFactory('FlipCoin')
+  const flipCoin = await FlipCoin.deploy()
 
-  await coinFlip.deployed()
+  await flipCoin.deployed()
   
   // wait for 5 confirmations
-  console.log('coinFlip.deployed, waiting for 5 block confirmations...')
-  await coinFlip.deployTransaction.wait()
-  console.log(`CoinFlip deployed to ${coinFlip.address}`)
+  console.log('flipCoin.deployed, waiting for 5 block confirmations...')
+  await flipCoin.deployTransaction.wait()
+  console.log(`FlipCoin deployed to ${flipCoin.address}`)
 
-  // Verifying CoinFlip
-  await verifyContract(coinFlip, 'CoinFlip')
+  // Verifying FlipCoin
+  await verifyContract(flipCoin, 'FlipCoin')
 }
 
 async function verifyContract(token, contractName) {

@@ -49,16 +49,20 @@ const CoinFlip: FC = () => {
       });
     } else {
       // set the last coin up face by the result
-      if (!isNull(lastResult)) {
-        if (lastResult === CoinStatus.heads) {
-          api.start({
-            rotation: [-Math.PI / 2, 0, 0],
-            config: { duration: 0 },
-          });
-        } else {
-          api.start({ rotation: [Math.PI / 2, 0, 0], config: { duration: 0 } });
-        }
+      if (lastResult === CoinStatus.heads || isNull(lastResult)) {
+        api.start({
+          rotation: [-Math.PI / 2, 0, 0],
+          position: [0, 12, 0],
+          config: { duration: 0 },
+        });
+      } else {
+        api.start({
+          rotation: [Math.PI / 2, 0, 0],
+          position: [0, 12, 0],
+          config: { duration: 0 },
+        });
       }
+      setCurrentCoinStatus(null);
     }
   }, [isLoading, api, lastResult]);
 

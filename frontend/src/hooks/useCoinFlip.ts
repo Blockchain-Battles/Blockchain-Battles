@@ -11,26 +11,35 @@ type UseCoinFlipProps = {
 const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [lastResult, setLastResult] = useState<CoinStatus | null>(null);
-  const writeContractMutation = useWriteContract();
+  const writeContractMutation = useWriteContract({
+    mutation: {
+      onError(err) {
+        console.log({ err });
+        setIsLoading(false);
+      },
+    },
+  });
 
   const { address } = useAccount();
 
   const flip = (choice: CoinStatus) => {
     setIsLoading(true);
 
+    console.log({ choice, config: config.flipCoinAddress });
+
     writeContractMutation.writeContract({
       abi: CoinFlipAbi,
-      functionName: "flipACoin",
+      functionName: "flipCoin",
       address: config.flipCoinAddress,
-      args: [choice],
+      args: [choice,],
     });
   };
 
   useWatchContractEvent({
     abi: CoinFlipAbi,
-    eventName: "CoinFlipResult",
+    eventName: "CoinFlipped",
     address: config.flipCoinAddress,
-    args: [address],
+    // args: { player: address },
     onLogs(...args) {
       setIsLoading(false);
       // set the coin result
