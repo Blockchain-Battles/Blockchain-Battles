@@ -59,7 +59,7 @@ const Scene = (props: Props) => {
       <Preload all />
       {/* <axesHelper args={[500]} />
       <gridHelper args={[200, 200, 200]} /> */}
-      <OrbitControls enabled={false} />
+      <OrbitControls enabled={true} />
     </>
   );
 };

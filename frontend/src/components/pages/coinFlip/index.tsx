@@ -6,6 +6,7 @@ import { CoinStatus } from "@/models/games/CoinFlip";
 import View from "@/utils/three/View";
 import { Button, Stack, Typography } from "@mui/material";
 import { useSpring } from "@react-spring/three";
+import { isNull } from "lodash";
 import { FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAccount } from "wagmi";
@@ -48,10 +49,15 @@ const CoinFlip: FC = () => {
       });
     } else {
       // set the last coin up face by the result
-      if (lastResult === CoinStatus.heads) {
-        api.start({ rotation: [-Math.PI / 2, 0, 0], config: { duration: 0 } });
-      } else {
-        api.start({ rotation: [Math.PI / 2, 0, 0], config: { duration: 0 } });
+      if (!isNull(lastResult)) {
+        if (lastResult === CoinStatus.heads) {
+          api.start({
+            rotation: [-Math.PI / 2, 0, 0],
+            config: { duration: 0 },
+          });
+        } else {
+          api.start({ rotation: [Math.PI / 2, 0, 0], config: { duration: 0 } });
+        }
       }
     }
   }, [isLoading, api, lastResult]);
