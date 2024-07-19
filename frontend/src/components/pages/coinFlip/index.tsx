@@ -5,9 +5,15 @@ import useChainNativeCoin from "@/hooks/useChainNativeCoin";
 import useCoinFlip, { FlipResult } from "@/hooks/useCoinFlip";
 import { CoinStatus } from "@/models/games/CoinFlip";
 import View from "@/utils/three/View";
-import { Button, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  InputAdornment,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useSpring } from "@react-spring/three";
-import { delay, isNull } from "lodash";
+import { delay, isNull, toNumber } from "lodash";
 import { FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { formatEther } from "viem";
@@ -23,11 +29,14 @@ const CoinFlip: FC = () => {
     null
   );
 
+  const [prizeValue, setPrizeValue] = useState(0.1);
+
   const { isConnected } = useAccount();
   const { flip, isLoading, lastResult } = useCoinFlip({
     onFlipResult(result) {
       responseReceived(result);
     },
+    betAmount: prizeValue,
   });
 
   const nativeCoin = useChainNativeCoin();
@@ -79,7 +88,6 @@ const CoinFlip: FC = () => {
    * when the result of the move returns
    */
   function responseReceived(result: FlipResult | null) {
-  
     if (isNull(result)) {
       toast.error("something went wrong :(");
     } else {
@@ -91,7 +99,7 @@ const CoinFlip: FC = () => {
         toast.error(`You lost. Maybe next time ☹️ `);
       }
     }
-    
+
     const isResultHeads =
       isNull(result) ||
       (currentCoinStatus === CoinStatus.heads && result.didWin) ||
@@ -115,16 +123,15 @@ const CoinFlip: FC = () => {
     });
 
     setCurrentCoinStatus(null);
-
- 
   }
+
+  const disableActionButtons = isLoading || prizeValue <= 0;
 
   return (
     <>
       <View>
         <Coin springStyles={styles as any} />
       </View>
-      {}
       <AnimateInChildren
         height={600}
         width={500}
@@ -136,29 +143,50 @@ const CoinFlip: FC = () => {
         }}
       >
         <Typography variant="h3">Flip a coin</Typography>
-        <Stack gap={2} direction="row">
-          <Button
-            onClick={() => handleCoinFlip(CoinStatus.heads)}
-            sx={{ width: 150, height: 150, fontSize: 15 }}
-            disabled={isLoading}
-            variant={
-              currentCoinStatus === CoinStatus.heads ? "contained" : "outlined"
-            }
-          >
-            Heads
-          </Button>
+        <Stack gap="20px">
+          <TextField
+            value={prizeValue}
+            onChange={(event) => setPrizeValue(+event.target.value)}
+            label="Prize amount"
+            InputProps={{
+              type: "number",
+              startAdornment: <InputAdornment>{nativeCoin}</InputAdornment>,
+            }}
+            sx={{
+              width: "320px",
+              "& input": {
+                paddingLeft: "1rem",
+              },
+            }}
+          />
+          <Stack gap="20px" direction="row">
+            <Button
+              onClick={() => handleCoinFlip(CoinStatus.heads)}
+              sx={{ width: 150, height: 150, fontSize: 15 }}
+              disabled={disableActionButtons}
+              variant={
+                currentCoinStatus === CoinStatus.heads
+                  ? "contained"
+                  : "outlined"
+              }
+            >
+              Heads
+            </Button>
 
-          <Button
-            onClick={() => handleCoinFlip(CoinStatus.tails)}
-            sx={{ width: 150, height: 150 }}
-            disabled={isLoading}
-            variant={
-              currentCoinStatus === CoinStatus.tails ? "contained" : "outlined"
-            }
-            color="primary"
-          >
-            Tails
-          </Button>
+            <Button
+              onClick={() => handleCoinFlip(CoinStatus.tails)}
+              sx={{ width: 150, height: 150 }}
+              disabled={disableActionButtons}
+              variant={
+                currentCoinStatus === CoinStatus.tails
+                  ? "contained"
+                  : "outlined"
+              }
+              color="primary"
+            >
+              Tails
+            </Button>
+          </Stack>
         </Stack>
       </AnimateInChildren>
     </>

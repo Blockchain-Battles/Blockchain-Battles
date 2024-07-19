@@ -23,9 +23,10 @@ export type FlipResult = {
 
 type UseCoinFlipProps = {
   onFlipResult?(flipResult: FlipResult | null): void;
+  betAmount: number;
 };
 
-const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
+const useCoinFlip = ({ onFlipResult, betAmount }: UseCoinFlipProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [lastResult, setLastResult] = useState<FlipResult | null>(null);
 
@@ -44,7 +45,7 @@ const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
       onError(err) {
         console.log({ err });
         setIsLoading(false);
-        onFlipResult?.(null)
+        onFlipResult?.(null);
       },
     },
   });
@@ -61,7 +62,7 @@ const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
       functionName: "flipCoin",
       address: config.flipCoinAddress,
       args: [choice, BigInt(gameUid)],
-      value: parseEther("1"),
+      value: parseEther(betAmount.toString()),
       maxFeePerGas: feeData?.maxFeePerGas,
       maxPriorityFeePerGas: feeData?.maxPriorityFeePerGas,
     });

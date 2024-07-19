@@ -1,7 +1,7 @@
 import { Box, ButtonBase, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 type Props = {
   title: string;
@@ -26,6 +26,12 @@ const GameBox: FC<Props> = ({ image, title, href }) => {
       alignItems="center"
       component={ButtonBase}
       onClick={clickHandler}
+      sx={{
+        transition: "all .2s ease",
+        "&:hover": {
+          scale: "1.02",
+        },
+      }}
     >
       <Image alt={title} src={image} width={100} height={100} />
       <Typography variant="h6">{title}</Typography>

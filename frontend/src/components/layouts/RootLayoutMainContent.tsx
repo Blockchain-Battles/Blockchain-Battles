@@ -26,10 +26,10 @@ const RootLayoutMainContent: FC<PropsWithChildren<Props>> = ({
       content: "Games",
       route: "/games",
     },
-    {
-      content: "Login",
-      route: "/login",
-    },
+    // {
+    //   content: "Login",
+    //   route: "/login",
+    // },
     // {
     //   content: "Signup",
     //   route: "/signup",
@@ -59,7 +59,7 @@ const RootLayoutMainContent: FC<PropsWithChildren<Props>> = ({
             gap={1}
             height="50px"
           >
-            <GoogleLogin onSuccess={console.log} text="signin" />
+            {/* <GoogleLogin onSuccess={console.log} text="signin" /> */}
             <ConnectButton />
           </HStack>
         </HStack>
