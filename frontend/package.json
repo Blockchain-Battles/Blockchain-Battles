@@ -34,7 +34,7 @@
     "three-stdlib": "^2.29.11",
     "tunnel-rat": "^0.1.2",
     "viem": "2.x",
-    "wagmi": "^2.8.5"
+    "wagmi": "^2.11.3"
   },
   "devDependencies": {
     "@types/node": "^20",

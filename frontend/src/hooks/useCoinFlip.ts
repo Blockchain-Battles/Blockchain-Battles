@@ -1,37 +1,69 @@
 import config from "@/config";
 import { CoinFlipAbi } from "@/contracts/CoinFlip.sol/CoinFlipAbi";
 import { CoinStatus } from "@/models/games/CoinFlip";
-import { useEffect, useState } from "react";
-import { Address } from "viem";
-import { useAccount, useWatchContractEvent, useWriteContract } from "wagmi";
+import { get, isNull, random } from "lodash";
+import { useRef, useState } from "react";
+import { NonceTooHighError, parseEther } from "viem";
+
+import {
+  useAccount,
+  useBlockNumber,
+  useEstimateFeesPerGas,
+  useWatchContractEvent,
+  useWriteContract,
+  // useFeeData as useEstimateFeesPerGas,
+  // useContractWrite as useWriteContract,
+  // useContractEvent as useWatchContractEvent,
+} from "wagmi";
+
+export type FlipResult = {
+  didWin: boolean;
+  betAmount: bigint;
+};
 
 type UseCoinFlipProps = {
-  onFlipResult?(...args: any): void;
+  onFlipResult?(flipResult: FlipResult | null): void;
 };
+
 const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [lastResult, setLastResult] = useState<CoinStatus | null>(null);
+  const [lastResult, setLastResult] = useState<FlipResult | null>(null);
+
+  const currentGameUid = useRef<bigint | null>(null);
+
+  const { address } = useAccount();
+
+  const { data: currentBlockNumber } = useBlockNumber();
+
+  const { data: feeData } = useEstimateFeesPerGas();
+
+  const createGameUid = () => BigInt(random(99999999));
+
   const writeContractMutation = useWriteContract({
     mutation: {
       onError(err) {
         console.log({ err });
         setIsLoading(false);
+        onFlipResult?.(null)
       },
     },
   });
 
-  const { address } = useAccount();
-
-  const flip = (choice: CoinStatus) => {
+  const flip = async (choice: CoinStatus) => {
     setIsLoading(true);
 
-    console.log({ choice, config: config.flipCoinAddress });
+    const gameUid = createGameUid();
+
+    currentGameUid.current = gameUid;
 
     writeContractMutation.writeContract({
       abi: CoinFlipAbi,
       functionName: "flipCoin",
       address: config.flipCoinAddress,
-      args: [choice,],
+      args: [choice, BigInt(gameUid)],
+      value: parseEther("1"),
+      maxFeePerGas: feeData?.maxFeePerGas,
+      maxPriorityFeePerGas: feeData?.maxPriorityFeePerGas,
     });
   };
 
@@ -39,12 +71,21 @@ const useCoinFlip = ({ onFlipResult }: UseCoinFlipProps) => {
     abi: CoinFlipAbi,
     eventName: "CoinFlipped",
     address: config.flipCoinAddress,
-    // args: { player: address },
-    onLogs(...args) {
+    fromBlock: currentBlockNumber,
+    args: { player: address, uid: currentGameUid.current },
+    enabled: !isNull(currentGameUid.current),
+    onLogs(event) {
+      const betAmount = get(event, ["0", "args", "betAmount"]);
+      const win = get(event, ["0", "args", "win"]);
+
       setIsLoading(false);
-      // set the coin result
-      // setLastResult(args[0]);
-      onFlipResult?.(...args);
+      currentGameUid.current = null;
+
+      const result: FlipResult = { betAmount, didWin: win };
+
+      setLastResult(result);
+
+      onFlipResult?.(result);
     },
   });
 
