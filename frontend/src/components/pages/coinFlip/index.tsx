@@ -1,6 +1,7 @@
 "use client";
 import Coin from "@/components/pages/coinFlip/Coin";
 import AnimateInChildren from "@/components/ui/AnimateInChildren";
+import config from "@/config";
 import useChainNativeCoin from "@/hooks/useChainNativeCoin";
 import useCoinFlip, { FlipResult } from "@/hooks/useCoinFlip";
 import { CoinStatus } from "@/models/games/CoinFlip";
@@ -13,11 +14,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useSpring } from "@react-spring/three";
-import { delay, isNull, toNumber } from "lodash";
+import { delay, floor, isNull, toNumber } from "lodash";
 import { FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { formatEther } from "viem";
-import { useAccount } from "wagmi";
+import { formatEther, formatUnits } from "viem";
+import { useAccount, useBalance } from "wagmi";
 
 const coinY = {
   top: 100,
@@ -29,10 +30,21 @@ const CoinFlip: FC = () => {
     null
   );
 
-  const [prizeValue, setPrizeValue] = useState(0.1);
+  const { data: contractBalance } = useBalance({
+    address: config.flipCoinAddress,
+  });
+
+  const contractBalanceNumber = +formatUnits(
+    contractBalance?.value || BigInt(0),
+    contractBalance?.decimals || 18
+  );
+
+  const maxBetAmount = floor(0.4 * contractBalanceNumber);
+
+  const [prizeValue, setPrizeValue] = useState(floor(maxBetAmount / 100));
 
   const { isConnected } = useAccount();
-  const { flip, isLoading, lastResult } = useCoinFlip({
+  const { flip, isLoading } = useCoinFlip({
     onFlipResult(result) {
       responseReceived(result);
     },
@@ -127,6 +139,9 @@ const CoinFlip: FC = () => {
 
   const disableActionButtons = isLoading || prizeValue <= 0;
 
+  const error =
+    prizeValue > maxBetAmount && "Should be less than the max amount!";
+
   return (
     <>
       <View>
@@ -150,14 +165,24 @@ const CoinFlip: FC = () => {
             label="Prize amount"
             InputProps={{
               type: "number",
-              startAdornment: <InputAdornment position="start">{nativeCoin}</InputAdornment>,
+              inputProps: {
+                max: maxBetAmount,
+                min: 0,
+              },
+              startAdornment: (
+                <InputAdornment position="start">{nativeCoin}</InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  max: {maxBetAmount} {nativeCoin}
+                </InputAdornment>
+              ),
             }}
             sx={{
               width: "320px",
-              "& input": {
-                paddingLeft: "1rem",
-              },
             }}
+            error={!!error}
+            helperText={error}
           />
           <Stack gap="20px" direction="row">
             <Button

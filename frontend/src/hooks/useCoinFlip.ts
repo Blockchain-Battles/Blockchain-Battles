@@ -61,7 +61,7 @@ const useCoinFlip = ({ onFlipResult, betAmount }: UseCoinFlipProps) => {
       abi: CoinFlipAbi,
       functionName: "flipCoin",
       address: config.flipCoinAddress,
-      args: [choice, BigInt(gameUid)],
+      args: [choice, gameUid],
       value: parseEther(betAmount.toString()),
       maxFeePerGas: feeData?.maxFeePerGas,
       maxPriorityFeePerGas: feeData?.maxPriorityFeePerGas,
