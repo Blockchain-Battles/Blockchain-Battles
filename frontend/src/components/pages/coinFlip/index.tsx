@@ -150,7 +150,7 @@ const CoinFlip: FC = () => {
             label="Prize amount"
             InputProps={{
               type: "number",
-              startAdornment: <InputAdornment>{nativeCoin}</InputAdornment>,
+              startAdornment: <InputAdornment position="start">{nativeCoin}</InputAdornment>,
             }}
             sx={{
               width: "320px",
