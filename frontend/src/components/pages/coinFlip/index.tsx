@@ -137,11 +137,11 @@ const CoinFlip: FC = () => {
     setCurrentCoinStatus(null);
   }
 
-  const disableActionButtons = isLoading || prizeValue <= 0;
-
+  
   const error =
-    prizeValue > maxBetAmount && "Should be less than the max amount!";
-
+  prizeValue > maxBetAmount && "Should be less than the max amount!";
+  
+  const disableActionButtons = isLoading || prizeValue <= 0 || !!error
   return (
     <>
       <View>
