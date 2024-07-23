@@ -39,9 +39,9 @@ const CoinFlip: FC = () => {
     contractBalance?.decimals || 18
   );
 
-  const maxBetAmount = floor(0.4 * contractBalanceNumber);
+  const maxBetAmount = floor(0.4 * contractBalanceNumber, 4);
 
-  const [prizeValue, setPrizeValue] = useState(floor(maxBetAmount / 100));
+  const [prizeValue, setPrizeValue] = useState(floor(maxBetAmount / 100,4));
 
   const { isConnected } = useAccount();
   const { flip, isLoading } = useCoinFlip({
