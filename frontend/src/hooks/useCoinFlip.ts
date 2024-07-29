@@ -57,14 +57,16 @@ const useCoinFlip = ({ onFlipResult, betAmount }: UseCoinFlipProps) => {
 
     currentGameUid.current = gameUid;
 
+    console.log({feeData})
+
     writeContractMutation.writeContract({
       abi: CoinFlipAbi,
       functionName: "flipCoin",
       address: config.flipCoinAddress,
       args: [choice, gameUid],
       value: parseEther(betAmount.toString()),
-      maxFeePerGas: feeData?.maxFeePerGas,
-      maxPriorityFeePerGas: feeData?.maxPriorityFeePerGas,
+      // maxFeePerGas: feeData?.maxFeePerGas,
+      // maxPriorityFeePerGas: feeData?.maxPriorityFeePerGas,
     });
   };
 
