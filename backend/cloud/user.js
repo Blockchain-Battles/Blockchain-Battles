@@ -9,7 +9,3 @@ Parse.Cloud.beforeSave(Parse.User, function (request, response) {
         user.setACL(acl);
     }
 });
-
-Parse.Cloud.afterSave(Parse.User, function (request, response) {
-
-})
