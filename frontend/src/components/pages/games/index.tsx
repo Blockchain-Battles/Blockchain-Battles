@@ -27,14 +27,25 @@ const Games: FC<Props> = (props) => {
       >
         <Typography variant="h3">Pick a game</Typography>
 
-        <Stack>
+      <div className="flex gap-5">
+      <Stack>
           <GameBox
             title="Coin flip"
-            image="/images/ethereumcoin.png"
+            image="/flip.webp"
             href="/games/coinFlip"
           />
         </Stack>
+      <Stack>
+          <GameBox
+            title="Coming soon"
+            image="/joker.webp"
+            href="/games/coinFlip"
+          />
+        </Stack>
+       
+      </div>
       </AnimateInChildren>
+      
     </>
   );
 };
