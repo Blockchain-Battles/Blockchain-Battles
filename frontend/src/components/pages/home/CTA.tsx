@@ -29,7 +29,7 @@ const CTA = (props: Props) => {
         component={Link}
         href="/games"
       >
-        Let's Play :)
+        Let&apos;s Play :)
       </Button>
     </AnimateInChildren>
   );
