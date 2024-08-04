@@ -21,7 +21,7 @@ const GameBox: FC<Props> = ({ image, title, href }) => {
       border="1px solid"
       borderColor="grey.main"
       borderRadius={2}
-      width={150}
+      width={200}
       p={2}
       alignItems="center"
       component={ButtonBase}
