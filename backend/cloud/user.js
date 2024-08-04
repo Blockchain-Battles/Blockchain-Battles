@@ -1,3 +1,5 @@
+const Parse = require('parse/node');
+
 Parse.Cloud.beforeSave(Parse.User, function (request, response) {
     var user = request.object;
     if (user.isNew()) {
