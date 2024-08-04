@@ -187,7 +187,7 @@ const CoinFlip: FC = () => {
           <Stack gap="20px" direction="row">
             <Button
               onClick={() => handleCoinFlip(CoinStatus.heads)}
-              sx={{ width: 150, height: 150, fontSize: 15 }}
+              sx={{ width: 150, height: 150, fontSize: 25 }}
               disabled={disableActionButtons}
               variant={
                 currentCoinStatus === CoinStatus.heads
@@ -200,7 +200,7 @@ const CoinFlip: FC = () => {
 
             <Button
               onClick={() => handleCoinFlip(CoinStatus.tails)}
-              sx={{ width: 150, height: 150 }}
+              sx={{ width: 150, height: 150, fontSize: 25 }}
               disabled={disableActionButtons}
               variant={
                 currentCoinStatus === CoinStatus.tails
