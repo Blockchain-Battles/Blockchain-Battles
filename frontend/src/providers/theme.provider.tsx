@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 import { ThemeProvider as MuiThemeProvider, createTheme } from "@mui/material";
-import { purple } from "@mui/material/colors";
+import { purple, lightGreen } from "@mui/material/colors";
 import { FiraCode } from "@/assets/fonts";
 
 type Props = {};
@@ -8,7 +8,7 @@ type Props = {};
 const ThemeProvider = ({ children }: PropsWithChildren<Props>) => {
   const theme = createTheme({
     palette: {
-      primary: purple,
+      primary: lightGreen,
       mode: "dark",
     },
     typography: {
