@@ -19,8 +19,7 @@ const CTA = (props: Props) => {
     >
       <Typography variant="h3">Enjoy the Blocks</Typography>
       <Typography variant="body1">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui cumque,
-        ullam eos maiores sed fugit eum quae id eaque in.
+        Step into a world of endless possibilities where every block holds a new adventure!
       </Typography>
       <Button
         sx={{
@@ -30,7 +29,7 @@ const CTA = (props: Props) => {
         component={Link}
         href="/games"
       >
-        Play a game for free :)
+        Let's Play :)
       </Button>
     </AnimateInChildren>
   );
