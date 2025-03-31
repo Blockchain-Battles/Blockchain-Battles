@@ -15,7 +15,7 @@ export default function RootLayout(
     <html lang="en">
       <body className={clsx("relative h-dvh w-screen overflow-hidden")}>
         <Layout>{children}</Layout>
-        <GoogleAnalytics gaId="G-780DNEFLNM" /> 
+        <GoogleAnalytics gaId="G-SL4NR4ZW4Q" /> 
       </body>
     </html>
   );
